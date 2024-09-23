@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    font-family: arial;
+    height: 100%;
+    width: 100%;
+}
+
+#main {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 20%;
+    min-width: 275px;
+    padding: 10px;
+    margin: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.textFields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+button {
+    min-width: 50px;
+}
+
+#results {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+#finalCritDMG {
+    display: inline;
+    float: right;
+}
+
+#finalAverageDMG {
+    display: inline;
+    float: right;
+}
+
+input {
+    width: 50px;
+    float: right;
+}
