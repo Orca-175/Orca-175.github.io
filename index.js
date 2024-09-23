@@ -9,8 +9,11 @@ function getDamage() {
     let resPEN = document.getElementById("resPEN").value * 0.01;
     let abilityMultiplier = document.getElementById("abilityMultiplier").value * 0.01;
     let acheronA2 = 1;
-    if (document.getElementById("acheronA2").checked) {
-        acheronA2 = 1.6;
+    if (document.getElementById("acheronA2_1").checked) {
+        acheronA2 = document.getElementById("acheronA2_1").value;
+    }
+    else if (document.getElementById("acheronA2_2").checked) {
+        acheronA2 = document.getElementById("acheronA2_2").value;
     }
 
     // Enemy Stats
@@ -65,6 +68,16 @@ function clearInputs() {
     document.getElementById("broken").checked = false;
 
 }
+
+const acheronA2_1 = document.getElementById("acheronA2_1");
+acheronA2_1.addEventListener("click", () => {
+        document.getElementById("acheronA2_2").checked = false;
+});
+
+const acheronA2_2 = document.getElementById("acheronA2_2");
+acheronA2_2.addEventListener("click", () => {
+        document.getElementById("acheronA2_1").checked = false;
+});
 
 const submitButton = document.getElementById("submit");
 submitButton.addEventListener("click", getDamage);
