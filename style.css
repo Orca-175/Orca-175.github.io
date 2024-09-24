@@ -42,6 +42,26 @@ h4 {
     color: var(--h4Color);
 }
 
+#pageButtons {
+    display: flex;
+    gap: 5px;
+    width: 100%;
+}
+
+#normalDMGInputs, #breakDMGInputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#normalDMG {
+    width: 100%;
+}
+
+#breakDMG {
+    width: 100%;
+}
+
 .textFields {
     display: flex;
     flex-direction: column;
@@ -49,7 +69,7 @@ h4 {
     width: 100%;
 }
 
-#buttons {
+.buttonsWrapper {
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -84,19 +104,19 @@ button:hover {
     width: 53px;
 }
 
-#results {
+#results, #resultsBreak {
     display: flex;
     flex-direction: column;
     gap: 5px;
     width: 100%;
 }
 
-#finalCritDMG {
+#finalCritDMG, #finalSuperBreakDMG {
     display: inline;
     float: right;
 }
 
-#finalAverageDMG {
+#finalAverageDMG, #finalBreakDMG {
     display: inline;
     float: right;
 }

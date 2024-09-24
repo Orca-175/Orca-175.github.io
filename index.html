@@ -9,22 +9,37 @@
 <body>
     <section id="main">
         <h1>Star Rail Damage <br> Calculator</h1>
+        <div id="pageButtons">
+            <button class="buttons" id="normalDMG">Normal Damage</button>
+            <button class="buttons" id="breakDMG">Break Damage</button>
+        </div>
         <div class="textFields">
             <!-- Character Stats -->
             <h4>In-combat Character Stats:</h4>
-            <div>Character Level: <input type="text" id="characterLevel" value="80"></div>
-            <div>Total Attack: <input type="text" id="totalAttack"></div>
-            <div>Crit Rate%: <input type="text" id="critRate"></div>
-            <div>Crit DMG%: <input type="text" id="critDMG"></div>
-            <div>DMG% Bonus: <input type="text" id="DMGPercent"></div>
-            <div>DEF% Ignore: <input type="text" id="defIgnore"></div>
-            <div>RES% PEN: <input type="text" id="resPEN"></div>
-            <div>Ability% Multiplier: <input type="text" id="abilityMultiplier"></div>
-            <div>Acheron A2: 
-                <div id="acheronCheckbox">
-                    <input type="checkbox" class="checkboxes" id="acheronA2_1" value="1.15"><label for="acheronA2_1">&nbsp; 1.15x &nbsp;</label>
-                    <input type="checkbox" class="checkboxes" id="acheronA2_2" value="1.6"><label for="acheronA2_2">&nbsp; 1.60x</label>
+            <div id="normalDMGInputs">
+                <div>Character Level: <input type="text" id="characterLevel" value="80"></div>
+                <div>Total Attack: <input type="text" id="totalAttack"></div>
+                <div>Crit Rate%: <input type="text" id="critRate"></div>
+                <div>Crit DMG%: <input type="text" id="critDMG"></div>
+                <div>DMG% Bonus: <input type="text" id="DMGPercent"></div>
+                <div>DEF% Ignore: <input type="text" id="defIgnore"></div>
+                <div>RES% PEN: <input type="text" id="resPEN"></div>
+                <div>Ability% Multiplier: <input type="text" id="abilityMultiplier"></div>
+                <div>Acheron A2:
+                    <div id="acheronCheckbox">
+                        <input type="checkbox" class="checkboxes" id="acheronA2_1" value="1.15"><label for="acheronA2_1">&nbsp; 1.15x &nbsp;</label>
+                        <input type="checkbox" class="checkboxes" id="acheronA2_2" value="1.6"><label for="acheronA2_2">&nbsp; 1.60x</label>
+                    </div>
                 </div>
+            </div>
+            <div id="breakDMGInputs">
+                <div>Character Level: <input type="text" id="characterLevelBreak" value="80"></div>
+                <div>Break Effect%: <input type="text" id="breakEffect"></div>
+                <div>Super Break DMG% Multiplier: <input type="text" id="superBreakMultiplier"></div>
+                <div>Base Toughness Reduction: <input type="text" id="baseToughnessReduction"></div>
+                <div>Weakness Break Efficiency%: <input type="text" id="weaknessBreakEfficiency"></div>
+                <div>DEF% Ignore: <input type="text" id="defIgnoreBreak"></div>
+                <div>RES% PEN: <input type="text" id="resPENBreak"></div>
             </div>
 
             <!-- Enemy Stats -->
@@ -32,17 +47,26 @@
             <div>Enemy Level: <input type="text" id="enemyLevel" value="95"></div>
             <div>DEF% Reduction: <input type="text" id="defReduction"></div>
             <div>RES% to character's element: <input type="text" id="enemyRES" value="20"></div>
-            <div>Vulnerability%: <input type="text" id="vulnerability"></div>
+            <div>DMG% Vulnerability: <input type="text" id="vulnerability"></div>
             <div>Weakness Broken: <div id="checkboxContainer"><input type="checkbox" class="checkboxes" id="broken"></div></div>
         </div>
-        <div id="buttons">
+        <div class="buttonsWrapper" id="buttonsNormal">
             <button class="buttons" id="submit">Submit</button>
             <button class="buttons" id="clear">Clear</button>
+        </div>
+        <div class="buttonsWrapper" id="buttonsBreak">
+            <button class="buttons" id="submitBreak">Submit</button>
+            <button class="buttons" id="clearBreak">Clear</button>
         </div>
         <div id="results">
             <h4>Results:</h4>
             <div>Final Crit DMG: <div id="finalCritDMG"></div></div>
             <div>Average DMG: <div id="finalAverageDMG"></div></div>
+        </div>
+        <div id="resultsBreak">
+            <h4>Results:</h4>
+            <div>Super Break DMG: <div id="finalSuperBreakDMG"></div></div>
+            <div>Break DMG: <div id="finalBreakDMG">Coming Soon.</div></div>
         </div>
     </section>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
