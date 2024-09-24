@@ -57,13 +57,13 @@ function clearInputs() {
     document.getElementById("DMGPercent").value = "";
     document.getElementById("resPEN").value = "";
     document.getElementById("abilityMultiplier").value = "";
-    document.getElementById("acheronA2").checked = false;
+    document.getElementById("acheronA2_1").checked = false;
+    document.getElementById("acheronA2_2").checked = false;
 
-    // Added another comment
     // Enemy Stats
     document.getElementById("enemyLevel").value = 95;
     document.getElementById("defReduction").value = "";
-    document.getElementById("enemyRES").value = "20";
+    document.getElementById("enemyRES").value = 20;
     document.getElementById("vulnerability").value = "";
     document.getElementById("broken").checked = false;
 

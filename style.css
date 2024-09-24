@@ -73,6 +73,15 @@ button:hover {
 
 .checkboxes {
     accent-color: var(--h4Color);
+    height: 15px;
+    width: 15px;
+}
+
+#checkboxContainer {
+    display: flex;
+    justify-content: center;
+    float: right;
+    width: 53px;
 }
 
 #results {
