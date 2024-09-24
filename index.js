@@ -1,28 +1,28 @@
 function getDamage() {
     // Character Stats
-    let characterLevel = parseFloat(document.getElementById("characterLevel").value);
-    let totalAttack = parseFloat(document.getElementById("totalAttack").value);
-    let critRate = document.getElementById("critRate").value * 0.01;
-    let critDMG = document.getElementById("critDMG").value * 0.01;
-    let DMGPercent = document.getElementById("DMGPercent").value * 0.01;
-    let defIgnore = document.getElementById("defIgnore").value * 0.01;
-    let resPEN = document.getElementById("resPEN").value * 0.01;
-    let abilityMultiplier = document.getElementById("abilityMultiplier").value * 0.01;
+    let characterLevel = parseFloat($("#characterLevel").val());
+    let totalAttack = parseFloat($("#totalAttack").val());
+    let critRate = $("#critRate").val() * 0.01;
+    let critDMG = $("#critDMG").val() * 0.01;
+    let DMGPercent = $("#DMGPercent").val() * 0.01;
+    let defIgnore = $("#defIgnore").val() * 0.01;
+    let resPEN = $("#resPEN").val() * 0.01;
+    let abilityMultiplier = $("#abilityMultiplier").val() * 0.01;
     let acheronA2 = 1;
-    if (document.getElementById("acheronA2_1").checked) {
-        acheronA2 = document.getElementById("acheronA2_1").value;
+    if ($("#acheronA2_1").prop("checked")) {
+        acheronA2 = $("#acheronA2_1").val();
     }
-    else if (document.getElementById("acheronA2_2").checked) {
-        acheronA2 = document.getElementById("acheronA2_2").value;
+    else if ($("#acheronA2_2").prop("checked")) {
+        acheronA2 = $("#acheronA2_2").val();
     }
 
     // Enemy Stats
-    let enemyLevel = parseFloat(document.getElementById("enemyLevel").value);
-    let defReduction = document.getElementById("defReduction").value * 0.01;
-    let enemyRES = document.getElementById("enemyRES").value * 0.01;
-    let vulnerability = document.getElementById("vulnerability").value * 0.01;
+    let enemyLevel = parseFloat($("#enemyLevel").val());
+    let defReduction = $("#defReduction").val() * 0.01;
+    let enemyRES = $("#enemyRES").val() * 0.01;
+    let vulnerability = $("#vulnerability").val() * 0.01;
     let brokenMultiplier = 0.9;
-    if (document.getElementById("broken").checked) {
+    if ($("#broken").prop("checked")) {
         brokenMultiplier = 1;
     }
 
@@ -34,7 +34,7 @@ function getDamage() {
     // Results
     // Final Crit Damage
     let finalCritDMG = baseDamage * (1 + critDMG) * (1 + DMGPercent) * defMultiplier * resMultiplier * (1 + vulnerability) * brokenMultiplier * acheronA2;
-    document.getElementById("finalCritDMG").innerHTML = Math.round(finalCritDMG);
+    $("#finalCritDMG").prop("innerHTML", Math.round(finalCritDMG));
 
     // Average Damage
     let averageSum = 0.00;
@@ -45,42 +45,42 @@ function getDamage() {
             averageSum += baseDamage * (1 + DMGPercent) * defMultiplier * resMultiplier * (1 + vulnerability) * brokenMultiplier * acheronA2;
         }
     }
-    document.getElementById("finalAverageDMG").innerHTML = Math.round(averageSum / 10000);
+    $("#finalAverageDMG").prop("innerHTML", Math.round(averageSum / 10000));
 }
 
 function clearInputs() {
     // Character Stats
-    document.getElementById("characterLevel").value = 80;
-    document.getElementById("totalAttack").value = "";
-    document.getElementById("critRate").value = "";
-    document.getElementById("critDMG").value = "";
-    document.getElementById("DMGPercent").value = "";
-    document.getElementById("resPEN").value = "";
-    document.getElementById("abilityMultiplier").value = "";
-    document.getElementById("acheronA2_1").checked = false;
-    document.getElementById("acheronA2_2").checked = false;
+    $("#characterLevel").val(80);
+    $("#totalAttack").val("");
+    $("#critRate").val("");
+    $("#critDMG").val("");
+    $("#DMGPercent").val("");
+    $("#resPEN").val("");
+    $("#abilityMultiplier").val("");
+    $("#acheronA2_1").prop("checked", false);
+    $("#acheronA2_2").prop("checked", false);
 
     // Enemy Stats
-    document.getElementById("enemyLevel").value = 95;
-    document.getElementById("defReduction").value = "";
-    document.getElementById("enemyRES").value = 20;
-    document.getElementById("vulnerability").value = "";
-    document.getElementById("broken").checked = false;
+    $("#enemyLevel").val(95);
+    $("#defReduction").val("");
+    $("#enemyRES").val(20);
+    $("#vulnerability").val("");
+    $("#broken").prop("checked", false);
 
 }
 
-const acheronA2_1 = document.getElementById("acheronA2_1");
-acheronA2_1.addEventListener("click", () => {
-        document.getElementById("acheronA2_2").checked = false;
+$("#acheronA2_1").click(() => {
+    $("#acheronA2_2").prop("checked", false);
 });
 
-const acheronA2_2 = document.getElementById("acheronA2_2");
-acheronA2_2.addEventListener("click", () => {
-        document.getElementById("acheronA2_1").checked = false;
+$("#acheronA2_2").click(() => {
+    $("#acheronA2_1").prop("checked", false);
 });
 
-const submitButton = document.getElementById("submit");
-submitButton.addEventListener("click", getDamage);
+$("#submit").click(() => {
+    getDamage();
+});
 
-const clearButton = document.getElementById("clear");
-clearButton.addEventListener("click", clearInputs);
+$("#clear").click(() => {
+    clearInputs();
+});
