@@ -95,6 +95,10 @@ button:hover {
     padding: 5px;
 }
 
+.clicked {
+    background-color: var(--hoverBackgroundColor);
+}
+
 .typeImage {
     display: block;
     height: auto;

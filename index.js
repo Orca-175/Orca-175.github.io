@@ -142,7 +142,7 @@ function clearInputsBreak() {
 }
 
 function clearTypeButtons() {
-    $(".typeButton").css("background-color", buttonBackgroundColor);
+    $(".typeButton").removeClass("clicked");
 }
 
 let buttonBackgroundColor = "#683737";
@@ -202,45 +202,38 @@ $("#clearBreak").click(() => {
 });
 
 // Type Buttons
-$("#physical").hover(() => {$("#physical").css("background-color", hoverBackgroundColor);}, () => {$("#physical").css("background-color", buttonBackgroundColor);})
-.click(() => {
+$("#physical").click(() => {
     clearTypeButtons();
-    $("#physical").css("background-color", hoverBackgroundColor);
+    $("#physical").addClass("clicked");
     characterType = "physical";
 });
-$("#fire").hover(() => {$("#fire").css("background-color", hoverBackgroundColor);}, () => {$("#fire").css("background-color", buttonBackgroundColor);})
-.click(() => {
+$("#fire").click(() => {
     clearTypeButtons();
-    $("#fire").css("background-color", hoverBackgroundColor);
+    $("#fire").addClass("clicked");
     characterType = "fire";
 });
-$("#ice").hover(() => {$("#ice").css("background-color", hoverBackgroundColor);}, () => {$("#ice").css("background-color", buttonBackgroundColor);})
-.click(() => {
+$("#ice").click(() => {
     clearTypeButtons();
-    $("#ice").css("background-color", hoverBackgroundColor);
+    $("#ice").addClass("clicked");
     characterType = "ice";
 });
-$("#lightning").hover(() => {$("#lightning").css("background-color", hoverBackgroundColor);}, () => {$("#lightning").css("background-color", buttonBackgroundColor);})
-.click(() => {
+$("#lightning").click(() => {
     clearTypeButtons();
-    $("#lightning").css("background-color", hoverBackgroundColor);
+    $("#lightning").addClass("clicked");
     characterType = "lightning";
 });
-$("#wind").hover(() => {$("#wind").css("background-color", hoverBackgroundColor);}, () => {$("#wind").css("background-color", buttonBackgroundColor);})
-.click(() => {
+$("#wind").click(() => {
     clearTypeButtons();
-    $("#wind").css("background-color", hoverBackgroundColor);
+    $("#wind").addClass("clicked");
     characterType = "wind";
 });
-$("#quantum").hover(() => {$("#quantum").css("background-color", hoverBackgroundColor);}, () => {$("#quantum").css("background-color", buttonBackgroundColor);})
-.click(() => {
+$("#quantum").click(() => {
     clearTypeButtons();
-    $("#quantum").css("background-color", hoverBackgroundColor);
+    $("#quantum").addClass("clicked");
     characterType = "quantum";
 });
-$("#imaginary").hover(() => {$("#imaginary").css("background-color", hoverBackgroundColor);}, () => {$("#imaginary").css("background-color", buttonBackgroundColor);})
-.click(() => {
+$("#imaginary").click(() => {
     clearTypeButtons();
-    $("#imaginary").css("background-color", hoverBackgroundColor);
+    $("#imaginary").addClass("clicked");
     characterType = "imaginary";
 });
