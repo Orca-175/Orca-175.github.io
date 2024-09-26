@@ -2,13 +2,13 @@ function getDamage() {
     // Character Stats
     let characterLevel = parseFloat($("#characterLevel").val());
     let totalAttack = parseFloat($("#totalAttack").val());
-    let baseDamage = totalAttack * abilityMultiplier;
     let critRate = $("#critRate").val() * 0.01;
     let critDMG = $("#critDMG").val() * 0.01;
     let DMGPercent = $("#DMGPercent").val() * 0.01;
     let defIgnore = $("#defIgnore").val() * 0.01;
     let resPEN = $("#resPEN").val() * 0.01;
     let abilityMultiplier = $("#abilityMultiplier").val() * 0.01;
+    let baseDamage = totalAttack * abilityMultiplier;
     let acheronA2 = 1;
     if ($("#acheronA2_1").prop("checked")) {
         acheronA2 = $("#acheronA2_1").val();
@@ -97,6 +97,9 @@ function getBreakDamage(characterType) {
         breakBaseDMG = 1.5 * levelMultiplier[characterLevel - 1] * toughnessMultiplier;
     } else if (characterType == "quantum" || characterType == "imaginary") {
         breakBaseDMG = 0.5 * levelMultiplier[characterLevel - 1] * toughnessMultiplier;
+    } else {
+        $("#finalBreakDMG").prop("innerHTML", "Missing Character Type.");
+        return;
     }
     let finalBreakDMG = breakBaseDMG * (1 + breakEffect) * defMultiplier * resMultiplier * (1 + vulnerability) * brokenMultiplier;
     $("#finalBreakDMG").prop("innerHTML", Math.round(finalBreakDMG));
@@ -143,6 +146,7 @@ function clearInputsBreak() {
 
 function clearTypeButtons() {
     $(".typeButton").removeClass("clicked");
+    $(".clicked").addClass("typeButton").removeClass("clicked")
 }
 
 let buttonBackgroundColor = "#683737";
@@ -204,36 +208,36 @@ $("#clearBreak").click(() => {
 // Type Buttons
 $("#physical").click(() => {
     clearTypeButtons();
-    $("#physical").addClass("clicked");
+    $("#physical").addClass("clicked").removeClass("typeButton");
     characterType = "physical";
 });
 $("#fire").click(() => {
     clearTypeButtons();
-    $("#fire").addClass("clicked");
+    $("#fire").addClass("clicked").removeClass("typeButton");
     characterType = "fire";
 });
 $("#ice").click(() => {
     clearTypeButtons();
-    $("#ice").addClass("clicked");
+    $("#ice").addClass("clicked").removeClass("typeButton");
     characterType = "ice";
 });
 $("#lightning").click(() => {
     clearTypeButtons();
-    $("#lightning").addClass("clicked");
+    $("#lightning").addClass("clicked").removeClass("typeButton");
     characterType = "lightning";
 });
 $("#wind").click(() => {
     clearTypeButtons();
-    $("#wind").addClass("clicked");
+    $("#wind").addClass("clicked").removeClass("typeButton");
     characterType = "wind";
 });
 $("#quantum").click(() => {
     clearTypeButtons();
-    $("#quantum").addClass("clicked");
+    $("#quantum").addClass("clicked").removeClass("typeButton");
     characterType = "quantum";
 });
 $("#imaginary").click(() => {
     clearTypeButtons();
-    $("#imaginary").addClass("clicked");
+    $("#imaginary").addClass("clicked").removeClass("typeButton");
     characterType = "imaginary";
 });
