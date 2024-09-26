@@ -3,6 +3,7 @@
     --backgroundColor: #322c2b;
     --mainBackgroundColor: #803D3B;
     --buttonBackgroundColor: #683737;
+    --hoverBackgroundColor: #412b2b;
     --h4Color: #e3b083;
 }
 
@@ -48,7 +49,7 @@ h4 {
     width: 100%;
 }
 
-#normalDMGInputs, #breakDMGInputs {
+#normalDMGInputs, #breakDMGInputs, #enemyStats, #enemyStatsBreak {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -69,6 +70,11 @@ h4 {
     width: 100%;
 }
 
+#characterType {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .buttonsWrapper {
     display: flex;
     justify-content: center;
@@ -76,11 +82,23 @@ h4 {
 }
 
 button {
-    min-width: 70px;
+    border: none;
 }
 
 button:hover {
-    background-color: #412b2b;
+    background-color: var(--hoverBackgroundColor);
+    cursor: pointer;
+}
+
+.typeButton {
+    background-color: var(--buttonBackgroundColor);
+    padding: 5px;
+}
+
+.typeImage {
+    display: block;
+    height: auto;
+    width: 30px;
 }
 
 .buttons {
@@ -88,6 +106,7 @@ button:hover {
     color: var(--textColor);
     background-color: var(--buttonBackgroundColor);
     padding: 5px;
+    min-width: 70px;
     cursor: pointer;
 }
 
@@ -97,7 +116,7 @@ button:hover {
     width: 15px;
 }
 
-#checkboxContainer {
+#checkboxContainer, #checkboxContainerBreak {
     display: flex;
     justify-content: center;
     float: right;

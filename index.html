@@ -17,14 +17,14 @@
             <!-- Character Stats -->
             <h4>In-combat Character Stats:</h4>
             <div id="normalDMGInputs">
-                <div>Character Level: <input type="text" id="characterLevel" value="80"></div>
-                <div>Total Attack: <input type="text" id="totalAttack"></div>
-                <div>Crit Rate%: <input type="text" id="critRate"></div>
-                <div>Crit DMG%: <input type="text" id="critDMG"></div>
-                <div>DMG% Bonus: <input type="text" id="DMGPercent"></div>
-                <div>DEF% Ignore: <input type="text" id="defIgnore"></div>
-                <div>RES% PEN: <input type="text" id="resPEN"></div>
-                <div>Ability% Multiplier: <input type="text" id="abilityMultiplier"></div>
+                <div>Character Level: <input id="characterLevel" value="80"></div>
+                <div>Total Attack: <input id="totalAttack"></div>
+                <div>Crit Rate%: <input id="critRate"></div>
+                <div>Crit DMG%: <input id="critDMG"></div>
+                <div>DMG% Bonus: <input id="DMGPercent"></div>
+                <div>DEF% Ignore: <input id="defIgnore"></div>
+                <div>RES% PEN: <input id="resPEN"></div>
+                <div>Ability% Multiplier: <input  id="abilityMultiplier"></div>
                 <div>Acheron A2:
                     <div id="acheronCheckbox">
                         <input type="checkbox" class="checkboxes" id="acheronA2_1" value="1.15"><label for="acheronA2_1">&nbsp; 1.15x &nbsp;</label>
@@ -32,23 +32,46 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Character Stats Break -->
             <div id="breakDMGInputs">
-                <div>Character Level: <input type="text" id="characterLevelBreak" value="80"></div>
-                <div>Break Effect%: <input type="text" id="breakEffect"></div>
-                <div>Super Break DMG% Multiplier: <input type="text" id="superBreakMultiplier"></div>
-                <div>Base Toughness Reduction: <input type="text" id="baseToughnessReduction"></div>
-                <div>Weakness Break Efficiency%: <input type="text" id="weaknessBreakEfficiency"></div>
-                <div>DEF% Ignore: <input type="text" id="defIgnoreBreak"></div>
-                <div>RES% PEN: <input type="text" id="resPENBreak"></div>
+                <div>Character Level: <input id="characterLevelBreak" value="80"></div>
+                <div>Break Effect%: <input id="breakEffect"></div>
+                <div>Super Break DMG% Multiplier: <input id="superBreakMultiplier" value="100"></div>
+                <div>Base Toughness Reduction: <input id="baseToughnessReduction"></div>
+                <div>Weakness Break Efficiency%: <input id="weaknessBreakEfficiency"></div>
+                <div>DEF% Ignore: <input id="defIgnoreBreak"></div>
+                <div>RES% PEN: <input id="resPENBreak"></div>
+                <div>Character Type:</div>
+                <div id="characterType">
+                    <button class="typeButton" id="physical"><img class="typeImage" src="images/Type_Physical.webp"></button>
+                    <button class="typeButton" id="fire"><img class="typeImage" src="images/Type_Fire.webp"></button>
+                    <button class="typeButton" id="ice"><img class="typeImage" src="images/Type_Ice.webp"></button>
+                    <button class="typeButton" id="lightning"><img class="typeImage" src="images/Type_Lightning.webp"></button>
+                    <button class="typeButton" id="wind"><img class="typeImage" src="images/Type_Wind.webp"></button>
+                    <button class="typeButton" id="quantum"><img class="typeImage" src="images/Type_Quantum.webp"></button>
+                    <button class="typeButton" id="imaginary"><img class="typeImage" src="images/Type_Imaginary.webp"></button>
+                </div>
             </div>
 
             <!-- Enemy Stats -->
             <h4>Enemy Stats:</h4>
-            <div>Enemy Level: <input type="text" id="enemyLevel" value="95"></div>
-            <div>DEF% Reduction: <input type="text" id="defReduction"></div>
-            <div>RES% to character's element: <input type="text" id="enemyRES" value="20"></div>
-            <div>DMG% Vulnerability: <input type="text" id="vulnerability"></div>
-            <div>Weakness Broken: <div id="checkboxContainer"><input type="checkbox" class="checkboxes" id="broken"></div></div>
+            <div id="enemyStats">
+                <div>Enemy Level: <input id="enemyLevel" value="95"></div>
+                <div>DEF% Reduction: <input id="defReduction"></div>
+                <div>RES% to character's element: <input  id="enemyRES" value="20"></div>
+                <div>DMG% Vulnerability: <input id="vulnerability"></div>
+                <div>Weakness Broken: <div id="checkboxContainer"><input type="checkbox" class="checkboxes" id="broken"></div></div>
+            </div>
+            <!-- Enemy Stats Break -->
+            <div id="enemyStatsBreak">
+                <div>Enemy Level: <input id="enemyLevelBreak" value="95"></div>
+                <div>Enemy Max Toughness: <input id="maxToughness"></div>
+                <div>DEF% Reduction: <input id="defReductionBreak"></div>
+                <div>RES% to character's element: <input id="enemyRESBreak" value="20"></div>
+                <div>DMG% Vulnerability: <input id="vulnerabilityBreak"></div>
+                <div>Weakness Broken: <div id="checkboxContainerBreak"><input type="checkbox" class="checkboxes" id="brokenBreak"></div></div>
+            </div>
         </div>
         <div class="buttonsWrapper" id="buttonsNormal">
             <button class="buttons" id="submit">Submit</button>
@@ -66,7 +89,7 @@
         <div id="resultsBreak">
             <h4>Results:</h4>
             <div>Super Break DMG: <div id="finalSuperBreakDMG"></div></div>
-            <div>Break DMG: <div id="finalBreakDMG">Coming Soon.</div></div>
+            <div>Break DMG: <div id="finalBreakDMG"></div></div>
         </div>
     </section>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

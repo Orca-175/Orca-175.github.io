@@ -29,7 +29,6 @@ function getDamage() {
         brokenMultiplier = 1;
     }
 
-    
     // Results
     // Final Crit Damage
     let finalCritDMG = baseDamage * (1 + critDMG) * (1 + DMGPercent) * defMultiplier * resMultiplier * (1 + vulnerability) * brokenMultiplier * acheronA2;
@@ -47,7 +46,7 @@ function getDamage() {
     $("#finalAverageDMG").prop("innerHTML", Math.round(averageSum / 10000));
 }
 
-function getBreakDamage() {
+function getBreakDamage(characterType) {
     // Character Stats
     let characterLevel = parseFloat($("#characterLevel").val());
     let breakEffect = $("#breakEffect").val() * 0.01;
@@ -57,8 +56,8 @@ function getBreakDamage() {
     let defIgnore = $("#defIgnoreBreak").val() * 0.01;
     let resPEN = $("#resPENBreak").val() * 0.01;
     let finalToughnessReduction = baseToughnessReduction * (1 + weaknessBreakEfficiency);
-
-    const levelMultiplier = [54.0000, 58.0000, 62.0000, 67.5264, 70.5094, 73.5228, 76.5660, 79.6385, 82.7395, 85.8684,
+    const levelMultiplier = [
+        54.0000, 58.0000, 62.0000, 67.5264, 70.5094, 73.5228, 76.5660, 79.6385, 82.7395, 85.8684,
         91.4944, 97.0680, 102.5892, 108.0579, 113.4743, 118.8383, 124.1499, 129.4091, 134.6159, 139.7703,
         149.3323, 158.8011, 168.1768, 177.4594, 186.6489, 195.7452, 204.7484, 213.6585, 222.4754, 231.1992,
         246.4276, 261.1810, 275.4733, 289.3179, 302.7275, 315.7144, 328.2905, 340.4671, 352.2554, 363.6658,
@@ -67,26 +66,40 @@ function getBreakDamage() {
         1752.3215, 1861.9011, 1969.1242, 2074.0659, 2176.7983, 2277.3904, 2375.9085, 2472.4160, 2566.9739,  2659.6406,
         2780.3044, 2898.6022, 3014.6029, 3128.3729, 3239.9758, 3349.4730, 3456.9236, 3562.3843, 3665.9099, 3767.5533
     ];
-    console.log(characterLevel, breakEffect, superBreakMultiplier, baseToughnessReduction, weaknessBreakEfficiency, finalToughnessReduction);
 
     // Enemy Stats
-    let enemyLevel = parseFloat($("#enemyLevel").val());
-    let defReduction = $("#defReduction").val() * 0.01;
+    let enemyLevel = parseFloat($("#enemyLevelBreak").val());
+    let maxToughness = parseFloat($("#maxToughness").val())
+    let toughnessMultiplier = 0.5 + (maxToughness / 40);
+    let defReduction = $("#defReductionBreak").val() * 0.01;
     let defMultiplier = (characterLevel + 20) / ((enemyLevel + 20) * (1 - defIgnore - defReduction) + characterLevel + 20);
-    let enemyRES = $("#enemyRES").val() * 0.01;
+    let enemyRES = $("#enemyRESBreak").val() * 0.01;
     let resMultiplier = 1 - (enemyRES - resPEN);
-    let vulnerability = $("#vulnerability").val() * 0.01;
+    let vulnerability = $("#vulnerabilityBreak").val() * 0.01;
     let brokenMultiplier = 0.9;
-    if ($("#broken").prop("checked")) {
+    if ($("#brokenBreak").prop("checked")) {
         brokenMultiplier = 1;
     }
 
     // Results
+    // Super Break Damage
     let finalSuperBreakDMG = levelMultiplier[characterLevel - 1] * (finalToughnessReduction / 10) * (1 + breakEffect) * 
     (1 + superBreakMultiplier) * defMultiplier * resMultiplier * (1 + vulnerability) * brokenMultiplier;
-
     $("#finalSuperBreakDMG").prop("innerHTML", Math.round(finalSuperBreakDMG));
-    $("#finalBreakDMG").prop("innerHTML", "Coming Soon.");
+
+    // Break Damage
+    let breakBaseDMG;
+    if (characterType == "physical" || characterType == "fire") {
+        breakBaseDMG = 2 * levelMultiplier[characterLevel - 1] * toughnessMultiplier;
+    } else if (characterType == "ice" || characterType == "lightning") {
+        breakBaseDMG = 1 * levelMultiplier[characterLevel - 1] * toughnessMultiplier;
+    } else if (characterType == "wind") {
+        breakBaseDMG = 1.5 * levelMultiplier[characterLevel - 1] * toughnessMultiplier;
+    } else if (characterType == "quantum" || characterType == "imaginary") {
+        breakBaseDMG = 0.5 * levelMultiplier[characterLevel - 1] * toughnessMultiplier;
+    }
+    let finalBreakDMG = breakBaseDMG * (1 + breakEffect) * defMultiplier * resMultiplier * (1 + vulnerability) * brokenMultiplier;
+    $("#finalBreakDMG").prop("innerHTML", Math.round(finalBreakDMG));
 }
 
 function clearInputs() {
@@ -102,7 +115,11 @@ function clearInputs() {
     $("#acheronA2_2").prop("checked", false);
 
    // Enemy Stats
-   clearEnemyStats();
+    $("#enemyLevel").val(95);
+    $("#defReduction").val("");
+    $("#enemyRES").val(20);
+    $("#vulnerability").val("");
+    $("#broken").prop("checked", false);
 }
 
 function clearInputsBreak() {
@@ -116,37 +133,47 @@ function clearInputsBreak() {
     $("#resPENBreak").val("");
 
     // Enemy Stats
-    clearEnemyStats();
+    $("#enemyLevelBreak").val(95);
+    $("#maxToughness").val("");
+    $("#defReductionBreak").val("");
+    $("#enemyRESBreak").val(20);
+    $("#vulnerabilityBreak").val("");
+    $("#brokenBreak").prop("checked", false);
 }
 
-function clearEnemyStats() {
-    $("#enemyLevel").val(95);
-    $("#defReduction").val("");
-    $("#enemyRES").val(20);
-    $("#vulnerability").val("");
-    $("#broken").prop("checked", false);
+function clearTypeButtons() {
+    $(".typeButton").css("background-color", buttonBackgroundColor);
 }
+
+let buttonBackgroundColor = "#683737";
+let hoverBackgroundColor = "#412b2b";
+let characterType = "";
 
 $("#breakDMGInputs").hide();
 $("#buttonsBreak").hide();
 $("#resultsBreak").hide();
+$("#enemyStatsBreak").hide();
 
 $("#breakDMG").click(() => {;
     $("#breakDMGInputs").show();
     $("#normalDMGInputs").hide();
+    $("#enemyStats").hide();
     $("#buttonsNormal").hide();
     $("#results").hide();
-    $("#resultsBreak").show();
+    $("#enemyStatsBreak").show();
     $("#buttonsBreak").show();
+    $("#resultsBreak").show();
 }); 
 
 $("#normalDMG").click(() => {
     $("#normalDMGInputs").show();
     $("#breakDMGInputs").hide();
+    $("#enemyStatsBreak").hide();
     $("#buttonsBreak").hide();
     $("#resultsBreak").hide();
-    $("#results").show();
+    $("#enemyStats").show();
     $("#buttonsNormal").show();
+    $("#results").show();
 });
 
 $("#acheronA2_1").click(() => {
@@ -166,9 +193,54 @@ $("#clear").click(() => {
 });
 
 $("#submitBreak").click(() => {
-    getBreakDamage();
+    getBreakDamage(characterType);
 });
 
 $("#clearBreak").click(() => {
     clearInputsBreak();
+    clearTypeButtons();
+});
+
+// Type Buttons
+$("#physical").hover(() => {$("#physical").css("background-color", hoverBackgroundColor);}, () => {$("#physical").css("background-color", buttonBackgroundColor);})
+.click(() => {
+    clearTypeButtons();
+    $("#physical").css("background-color", hoverBackgroundColor);
+    characterType = "physical";
+});
+$("#fire").hover(() => {$("#fire").css("background-color", hoverBackgroundColor);}, () => {$("#fire").css("background-color", buttonBackgroundColor);})
+.click(() => {
+    clearTypeButtons();
+    $("#fire").css("background-color", hoverBackgroundColor);
+    characterType = "fire";
+});
+$("#ice").hover(() => {$("#ice").css("background-color", hoverBackgroundColor);}, () => {$("#ice").css("background-color", buttonBackgroundColor);})
+.click(() => {
+    clearTypeButtons();
+    $("#ice").css("background-color", hoverBackgroundColor);
+    characterType = "ice";
+});
+$("#lightning").hover(() => {$("#lightning").css("background-color", hoverBackgroundColor);}, () => {$("#lightning").css("background-color", buttonBackgroundColor);})
+.click(() => {
+    clearTypeButtons();
+    $("#lightning").css("background-color", hoverBackgroundColor);
+    characterType = "lightning";
+});
+$("#wind").hover(() => {$("#wind").css("background-color", hoverBackgroundColor);}, () => {$("#wind").css("background-color", buttonBackgroundColor);})
+.click(() => {
+    clearTypeButtons();
+    $("#wind").css("background-color", hoverBackgroundColor);
+    characterType = "wind";
+});
+$("#quantum").hover(() => {$("#quantum").css("background-color", hoverBackgroundColor);}, () => {$("#quantum").css("background-color", buttonBackgroundColor);})
+.click(() => {
+    clearTypeButtons();
+    $("#quantum").css("background-color", hoverBackgroundColor);
+    characterType = "quantum";
+});
+$("#imaginary").hover(() => {$("#imaginary").css("background-color", hoverBackgroundColor);}, () => {$("#imaginary").css("background-color", buttonBackgroundColor);})
+.click(() => {
+    clearTypeButtons();
+    $("#imaginary").css("background-color", hoverBackgroundColor);
+    characterType = "imaginary";
 });
