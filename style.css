@@ -12,6 +12,10 @@
     padding: 0;
 }
 
+.hidden {
+    display: none;
+}
+
 body {
     background-color: var(--backgroundColor);
     color: var(--textColor);
@@ -49,7 +53,7 @@ h4 {
     width: 100%;
 }
 
-#normalDMGInputs, #breakDMGInputs, #enemyStats, #enemyStatsBreak {
+.inputs {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -63,7 +67,7 @@ h4 {
     width: 100%;
 }
 
-.textFields {
+.mainContent {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -128,7 +132,7 @@ button:hover, .typeButton:hover {
     width: 53px;
 }
 
-#results, #resultsBreak {
+.results {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -146,8 +150,8 @@ button:hover, .typeButton:hover {
 }
 
 input {
-    width: 50px;
     float: right;
+    width: 50px;
 }
 
 #acheronCheckbox {

@@ -13,10 +13,10 @@
             <button class="buttons" id="normalDMG">Normal Damage</button>
             <button class="buttons" id="breakDMG">Break Damage</button>
         </div>
-        <div class="textFields">
+        <div class="mainContent">
             <!-- Character Stats -->
             <h4>In-combat Character Stats:</h4>
-            <div id="normalDMGInputs">
+            <div id="normalDMGInputs" class="inputs">
                 <div>Character Level: <input id="characterLevel" value="80"></div>
                 <div>Total Attack: <input id="totalAttack"></div>
                 <div>Crit Rate%: <input id="critRate"></div>
@@ -34,7 +34,7 @@
             </div>
 
             <!-- Character Stats Break -->
-            <div id="breakDMGInputs">
+            <div id="breakDMGInputs" class="hidden">
                 <div>Character Level: <input id="characterLevelBreak" value="80"></div>
                 <div>Break Effect%: <input id="breakEffect"></div>
                 <div>Super Break DMG% Multiplier: <input id="superBreakMultiplier" value="100"></div>
@@ -56,7 +56,7 @@
 
             <!-- Enemy Stats -->
             <h4>Enemy Stats:</h4>
-            <div id="enemyStats">
+            <div id="enemyStats" class="inputs">
                 <div>Enemy Level: <input id="enemyLevel" value="95"></div>
                 <div>DEF% Reduction: <input id="defReduction"></div>
                 <div>RES% to character's element: <input  id="enemyRES" value="20"></div>
@@ -64,7 +64,7 @@
                 <div>Weakness Broken: <div id="checkboxContainer"><input type="checkbox" class="checkboxes" id="broken"></div></div>
             </div>
             <!-- Enemy Stats Break -->
-            <div id="enemyStatsBreak">
+            <div id="enemyStatsBreak" class="hidden">
                 <div>Enemy Level: <input id="enemyLevelBreak" value="95"></div>
                 <div>Enemy Max Toughness: <input id="maxToughness"></div>
                 <div>DEF% Reduction: <input id="defReductionBreak"></div>
@@ -73,20 +73,20 @@
                 <div>Weakness Broken: <div id="checkboxContainerBreak"><input type="checkbox" class="checkboxes" id="brokenBreak"></div></div>
             </div>
         </div>
-        <div class="buttonsWrapper" id="buttonsNormal">
+        <div id="buttonsNormal" class="buttonsWrapper">
             <button class="buttons" id="submit">Submit</button>
             <button class="buttons" id="clear">Clear</button>
         </div>
-        <div class="buttonsWrapper" id="buttonsBreak">
+        <div id="buttonsBreak" class="hidden">
             <button class="buttons" id="submitBreak">Submit</button>
             <button class="buttons" id="clearBreak">Clear</button>
         </div>
-        <div id="results">
+        <div id="resultsNormal" class="results">
             <h4>Results:</h4>
             <div>Final Crit DMG: <div id="finalCritDMG"></div></div>
             <div>Average DMG: <div id="finalAverageDMG"></div></div>
         </div>
-        <div id="resultsBreak">
+        <div id="resultsBreak" class="hidden">
             <h4>Results:</h4>
             <div>Super Break DMG: <div id="finalSuperBreakDMG"></div></div>
             <div>Break DMG: <div id="finalBreakDMG"></div></div>

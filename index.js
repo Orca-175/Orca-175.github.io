@@ -12,8 +12,7 @@ function getDamage() {
     let acheronA2 = 1;
     if ($("#acheronA2_1").prop("checked")) {
         acheronA2 = $("#acheronA2_1").val();
-    }
-    else if ($("#acheronA2_2").prop("checked")) {
+    } else if ($("#acheronA2_2").prop("checked")) {
         acheronA2 = $("#acheronA2_2").val();
     }
 
@@ -153,31 +152,32 @@ let buttonBackgroundColor = "#683737";
 let hoverBackgroundColor = "#412b2b";
 let characterType = "";
 
-$("#breakDMGInputs").hide();
-$("#buttonsBreak").hide();
-$("#resultsBreak").hide();
-$("#enemyStatsBreak").hide();
+$("#breakDMGInputs").hide().removeClass("hidden").addClass("inputs");
+$("#enemyStatsBreak").hide().removeClass("hidden").addClass("inputs");
+$("#buttonsBreak").hide().removeClass("hidden").addClass("buttonsWrapper");
+$("#resultsBreak").hide().removeClass("hidden").addClass("results");
 
-$("#breakDMG").click(() => {;
+
+$("#breakDMG").click(() => {
     $("#breakDMGInputs").show();
-    $("#normalDMGInputs").hide();
-    $("#enemyStats").hide();
-    $("#buttonsNormal").hide();
-    $("#results").hide();
     $("#enemyStatsBreak").show();
     $("#buttonsBreak").show();
     $("#resultsBreak").show();
+    $("#normalDMGInputs").hide();
+    $("#enemyStats").hide();
+    $("#buttonsNormal").hide();
+    $("#resultsNormal").hide();
 }); 
 
 $("#normalDMG").click(() => {
     $("#normalDMGInputs").show();
+    $("#enemyStats").show();
+    $("#buttonsNormal").show();
+    $("#resultsNormal").show();
     $("#breakDMGInputs").hide();
     $("#enemyStatsBreak").hide();
     $("#buttonsBreak").hide();
     $("#resultsBreak").hide();
-    $("#enemyStats").show();
-    $("#buttonsNormal").show();
-    $("#results").show();
 });
 
 $("#acheronA2_1").click(() => {
