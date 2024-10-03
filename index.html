@@ -14,35 +14,281 @@
             <button class="buttons" id="breakDMG">Break Damage</button>
         </div>
         <div class="mainContent">
-            <!-- Character Stats -->
             <h4>In-combat Character Stats:</h4>
-            <div id="normalDMGInputs" class="inputs">
-                <div>Character Level: <input id="characterLevel" value="80"></div>
-                <div>Total Attack: <input id="totalAttack"></div>
-                <div>Crit Rate%: <input id="critRate"></div>
-                <div>Crit DMG%: <input id="critDMG"></div>
-                <div>DMG% Bonus: <input id="DMGPercent"></div>
-                <div>DEF% Ignore: <input id="defIgnore"></div>
-                <div>RES% PEN: <input id="resPEN"></div>
-                <div>Ability% Multiplier: <input  id="abilityMultiplier"></div>
-                <div>Acheron A2:
+            <!-- Character Stats -->
+            <div id="normalDMGInputs" class="inputs"> 
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info"  src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText tooltipTextTop">
+                            A Character's Level is relevant for calculating how much an Enemy's DEF stat affects their damage.
+                        </span>
+                    </div>
+                    Character Level:
+                    <input id="characterLevel" value="80">
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info"  src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            Characters deal damage as a percentage of their Total ATTACK stat. This is relevant for calculating an attack's Base DMG.                             
+                        </span>
+                    </div>   
+                    Total ATK:
+                    <input id="totalAttack">
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText tooltipTextTop">
+                            The Ability Multiplier of a Character's Ability determines how much the damage of that Ability scales with their ATK. 
+                            <br> <br>
+                            Together, a Character's ATK stat and their Abilities' Multipliers determines the Base DMG of a particular attack.
+                        </span>
+                    </div>   
+                    Ability Multiplier:
+                    <div class="percent">% <input id="abilityMultiplier"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            CRITICAL Rate determines how often a Character deals CRIT DMG. This is used to calculate an attack's Average DMG.
+                            <br> <br>
+                            Examples of Buffs:
+                            <ul class="exampleList">
+                                <li>Herta's E2</li>
+                                <li>Himeko's A6</li>
+                                <li>Rutilant Arena's 2-pc effect</li>
+                            </ul>
+                        </span>
+                    </div>   
+                    CRIT Rate:
+                    <div class="percent">% <input id="critRate"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            CRITICAL DAMAGE determines how much extra damage an attack deals when it succesfully CRITS.
+                            <br> <br>
+                            Examples of Buffs:
+                            <ul class="exampleList">
+                                <li>Bronya's Ultimate</li>
+                                <li>Sparkle's Skill</li>
+                                <li>Robin's Talent and A4 Bonus Trace (for FUA)</li>
+                            </ul>
+                        </span>
+                    </div>   
+                    CRIT DMG:
+                    <div class="percent">% <input id="critDMG"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText tooltipTextTop">
+                            DAMAGE Boost is a general increase to the damage dealt by an attack. 
+                            <br> <br>
+                            Some debuffs apply effects that affect this stat and should not be confused with DMG Taken.
+                            <br> <br>
+                            Examples of Buffs:
+                            <ul class="exampleList">
+                                <li>Bronya's Skill</li>
+                                <li>Tingyun's Ultimate</li>
+                                <li>Acheron's A6 Bonus Trace</li>
+                            </ul>
+                            <br>
+                            Examples of Debuffs:
+                            <ul class="exampleList">
+                                <li>Along the Passing Shore's passive effect</li>
+                            </ul>
+                        </span>
+                    </div>   
+                    DMG Boost:
+                    <div class="percent">% <input id="DMGPercent"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            DEFENSE Ignore affects how much of an Enemy's DEF stat a Character will ignore when dealing damage to them. 
+                            <br> <br>
+                            This is functionally the same as DEF Reduction debuffs on an Enemy. 
+                            <br> <br>
+                            DEF cannot go below 0%.
+                            <br> <br>
+                            Examples of Buffs: 
+                            <ul class="exampleList">
+                                <li>Black Swan's Talent when an Enemy has 7 or more stacks of Arcana</li>
+                            </ul>    
+                        </span>
+                    </div>   
+                    DEF Ignore:
+                    <div class="percent">% <input id="defIgnore"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            A Character's RESISTANCE PENETRATION affects how much of an Enemy's resistance to their Type they will ignore.
+                            <br> <br>
+                            This is functionally the same as reductions to an Enemy's RES.
+                            <br> <br> 
+                            Examples of Buffs:
+                            <ul class="exampleList">
+                                <li>Ruan Mei's Ultimate</li>
+                                <li>Robin's E1</li>
+                            </ul>
+                        </span>
+                    </div>   
+                    RES PEN:
+                    <div class="percent">% <input id="resPEN"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            Acheron's A4 Bonus Trace occupies a special part of the game's damage formula. Because of this, it needs its own input for the
+                            calculator. 
+                            <br> <br>
+                            If the Character whose damage you are trying to calculate is not Acheron, then leave these checkboxes unchecked.
+                        </span>
+                    </div>   
+                    Acheron A4:
                     <div id="acheronCheckbox">
-                        <input type="checkbox" class="checkboxes" id="acheronA2_1" value="1.15"><label for="acheronA2_1">&nbsp; 1.15x &nbsp;</label>
-                        <input type="checkbox" class="checkboxes" id="acheronA2_2" value="1.6"><label for="acheronA2_2">&nbsp; 1.60x</label>
+                        <input type="checkbox" class="checkboxes" id="acheronA4_1" value="1.15"><label for="acheronA4_1">&nbsp; 1.15x &nbsp;</label>
+                        <input type="checkbox" class="checkboxes" id="acheronA4_2" value="1.6"><label for="acheronA4_2">&nbsp; 1.60x</label>
                     </div>
                 </div>
             </div>
 
             <!-- Character Stats Break -->
             <div id="breakDMGInputs" class="hidden">
-                <div>Character Level: <input id="characterLevelBreak" value="80"></div>
-                <div>Break Effect%: <input id="breakEffect"></div>
-                <div>Super Break DMG% Multiplier: <input id="superBreakMultiplier" value="100"></div>
-                <div>Base Toughness Reduction: <input id="baseToughnessReduction"></div>
-                <div>Weakness Break Efficiency%: <input id="weaknessBreakEfficiency"></div>
-                <div>DEF% Ignore: <input id="defIgnoreBreak"></div>
-                <div>RES% PEN: <input id="resPENBreak"></div>
-                <div>Character Type:</div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText tooltipTextTop">
+                            A Character's Level is relevant for calculating how much an Enemy's DEF stat affects their damage. 
+                            This also affects their Break and Super Break Base DMG.
+                        </span>
+                    </div>   
+                    Character Level: 
+                    <input id="characterLevelBreak" value="80">
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText tooltipTextTop">
+                            An attack's Toughness Reduction affects how much Super Break DMG it will deal. 
+                            <br> <br>
+                            This has no effect on Break DMG.
+                        </span>
+                    </div>   
+                    Base Toughness Reduction: 
+                    <input id="baseToughnessReduction">
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText tooltipTextTop">
+                            Break Effect serves as a general increase to the damage dealt by Break and Super Break.
+                            <br> <br>
+                            Examples of Buffs:
+                            <ul class="exampleList">
+                                <li>Harmony Trailblazer's Ultimate</li>
+                                <li>Firefly's A6 Bonus Trace</li>
+                                <li>Ruan Mei's A2 Bonus Trace</li>
+                            </ul>
+                        </span>
+                    </div>   
+                    Break Effect: 
+                    <div class="percent">% <input id="breakEffect"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText tooltipTextTop">
+                            Super Break DAMAGE Multipliers affect the damage dealt by Super Break DMG. 
+                            <br> <br>
+                            Note: Harmony Trailblazer's Ultimate description does not explicitly state this, but the multiplier of the Super Break
+                            DMG it mentions is 100%.
+                            <br> <br>
+                            Examples of Buffs:
+                            <ul class="exampleList">
+                                <li>Harmony Trailblazer's Ultimate and A2 Bonus Trace</li>
+                                <li>Firefly's A2 Bonus Trace</li>
+                            </ul>
+                        </span>
+                    </div>   
+                    Super Break DMG Multiplier: 
+                    <div class="percent">% <input id="superBreakMultiplier" value="100"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            Weakness Break Efficiency increases the amount of Toughness Reduction an attack deals.
+                            <br> <br>
+                            Examples of Buffs:
+                            <ul class="exampleList">
+                                <li>Boothill's Talent</li>
+                                <li>Firefly's Ultimate</li>
+                                <li>Ruan Mei's Skill</li>
+                            </ul>
+                        </span>
+                    </div>   
+                    Weakness Break Efficiency: 
+                    <div class="percent">% <input id="weaknessBreakEfficiency"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            DEFENSE Ignore affects how much of an Enemy's DEF stat a Character will ignore when dealing damage to them. 
+                            <br> <br>
+                            This is functionally the same as DEF Reduction debuffs on an Enemy. 
+                            <br> <br>
+                            DEF cannot go below 0%.
+                            <br> <br>
+                            Examples of Buffs: 
+                            <ul class="exampleList">
+                                <li>Black Swan's Talent when an Enemy has 7 or more stacks of Arcana</li>
+                                <li>Iron Cavalry Against the Scourge's 4-pc effect</li>
+                            </ul>    
+                        </span>
+                    </div>   
+                    DEF Ignore: 
+                    <div class="percent">% <input id="defIgnoreBreak"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            A Character's RESISTANCE PENETRATION affects how much of an Enemy's resistance to their Type they will ignore.
+                            <br> <br>
+                            This is functionally the same as reductions to an Enemy's RES.
+                            <br> <br> 
+                            Examples of Buffs:
+                            <ul class="exampleList">
+                                <li>Ruan Mei's Ultimate</li>
+                                <li>Robin's E1</li>
+                            </ul>
+                        </span>
+                    </div>   
+                    RES PEN: 
+                    <div class="percent">% <input id="resPENBreak"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            A Character's Type affects the Break Base DMG of their attacks.
+                            <br> <br>
+                            This has no effect on Super Break DMG.
+                        </span>
+                    </div>   
+                    Character Type:
+                </div>
                 <div id="characterType">
                     <div class="typeButton" id="physical"><img class="typeImage" src="images/Type_Physical.webp"></div>
                     <div class="typeButton" id="fire"><img class="typeImage" src="images/Type_Fire.webp"></div>
@@ -54,23 +300,181 @@
                 </div>
             </div>
 
-            <!-- Enemy Stats -->
             <h4>Enemy Stats:</h4>
+            <!-- Enemy Stats -->
             <div id="enemyStats" class="inputs">
-                <div>Enemy Level: <input id="enemyLevel" value="95"></div>
-                <div>DEF% Reduction: <input id="defReduction"></div>
-                <div>RES% to character's element: <input  id="enemyRES" value="20"></div>
-                <div>DMG% Vulnerability: <input id="vulnerability"></div>
-                <div>Weakness Broken: <div id="checkboxContainer"><input type="checkbox" class="checkboxes" id="broken"></div></div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info"  src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            An Enemy's Level relative to a Character's Level is important for calculating how much an Enemy's DEF stat affects the damage
+                            of a Character.
+                        </span>
+                    </div>
+                    Enemy Level: 
+                    <input id="enemyLevel" value="95">
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info"  src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            DEF Reduction affects how much of an Enemy's DEF is reduced. 
+                            <br> <br>
+                            This is functionally the same as DEF Ignore buffs on a Character. 
+                            <br> <br>
+                            DEF cannot go below 0%.
+                            <br> <br>
+                            Examples of Debuffs: 
+                            <ul class="exampleList">
+                                <li>Pela's Ultimate</li>
+                                <li>Resolution Shines as Pearls of Sweat's passive effect.</li>
+                            </ul>    
+                        </span>
+                    </div>
+                    DEF Reduction: 
+                    <div class="percent">% <input id="defReduction"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info"  src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            An Enemy's RESISTANCE to a certain Type determines how much damage of that Type is reduced when damage is dealt to them.
+                            <br> <br>
+                            Reductions to RES are functionally the same as RES PEN.
+                            <br> <br>
+                            Examples of Debuffs:
+                            <ul class="exampleList">
+                                <li>Acheron's Talent when her Ultimate is activated.</li>
+                                <li>Silver Wolf's Skill</li>
+                            </ul>
+                        </span>
+                    </div>
+                    RES to Character's Type: 
+                    <div class="percent">% <input id="enemyRES" value="20"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info"  src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText tooltipTextBottom">
+                            DAMAGE Taken, also known as Vulnerability, is a general increase to the damage taken by an Enemy.
+                            <br> <br>
+                            Effects of this type stack multiplicatively with and should not be confused with DMG Boost.
+                            <br> <br>
+                            Examples of Debuffs:
+                            <ul class="exampleList">
+                                <li>Guinaifen's Firekiss</li>
+                                <li>Jiaoqiu's Ashen Roast</li>
+                            </ul>
+                        </span>
+                    </div>
+                    DMG Taken:
+                    <div class="percent">% <input id="vulnerability"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info"  src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            Non-Weakness Broken enemies only take 90% of the total damage they would otherwise recieve. When Broken,
+                            they take 100% of the total damage dealt to them.
+                        </span>
+                    </div>
+                    Weakness Broken: 
+                    <div id="checkboxContainer"><input type="checkbox" class="checkboxes" id="broken"></div>
+                </div>
             </div>
             <!-- Enemy Stats Break -->
             <div id="enemyStatsBreak" class="hidden">
-                <div>Enemy Level: <input id="enemyLevelBreak" value="95"></div>
-                <div>Enemy Max Toughness: <input id="maxToughness"></div>
-                <div>DEF% Reduction: <input id="defReductionBreak"></div>
-                <div>RES% to character's element: <input id="enemyRESBreak" value="20"></div>
-                <div>DMG% Vulnerability: <input id="vulnerabilityBreak"></div>
-                <div>Weakness Broken: <div id="checkboxContainerBreak"><input type="checkbox" class="checkboxes" id="brokenBreak"></div></div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info"  src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            An Enemy's Level relative to a Character's Level is important for calculating how much an Enemy's DEF stat affects the damage
+                            of a Character.
+                        </span>
+                    </div>
+                    Enemy Level: 
+                    <input id="enemyLevelBreak" value="95">
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info"  src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            An Enemy's Max Toughness determines the Break Base DMG dealt to them. Higher Toughness on an Enemy equates to higher damage 
+                            dealt when Broken.
+                            <br> <br>
+                            This has no effect on Super Break DMG.
+                        </span>
+                    </div>
+                    Enemy Max Toughness: 
+                    <input id="maxToughness">
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info"  src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            DEF Reduction affects how much of an Enemy's DEF is reduced. 
+                            <br> <br>
+                            This is functionally the same as DEF Ignore buffs on a Character. 
+                            <br> <br>
+                            DEF cannot go below 0%.
+                            <br> <br>
+                            Examples of Debuffs: 
+                            <ul class="exampleList">
+                                <li>Pela's Ultimate</li>
+                                <li>Resolution Shines as Pearls of Sweat's passive effect.</li>
+                            </ul>    
+                        </span>
+                    </div>
+                    DEF Reduction: 
+                    <div class="percent">% <input id="defReductionBreak"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info"  src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            An Enemy's RESISTANCE to a certain Type determines how much damage of that Type is reduced when damage is dealt to them.
+                            <br> <br>
+                            Reductions to RES are functionally the same as RES PEN.
+                            <br> <br>
+                            Examples of Debuffs:
+                            <ul class="exampleList">
+                                <li>Acheron's Talent when her Ultimate is activated.</li>
+                                <li>Silver Wolf's Skill</li>
+                            </ul>
+                        </span>
+                    </div>
+                    RES to Character's Type: 
+                    <div class="percent">% <input id="enemyRESBreak" value="20"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info"  src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            DAMAGE Taken, also known as Vulnerability, is a general increase to the damage dealt to an Enemy.
+                            <br> <br>
+                            Examples of Debuffs:
+                            <ul class="exampleList">
+                                <li>Guinaifen's Firekiss</li>
+                                <li>Jiaoqiu's Ashen Roast</li>
+                                <li>Gallagher's Besotted</li>
+                                <li>Whereabouts Should Dreams Rest's passive effect</li>
+                            </ul>
+                        </span>
+                    </div>
+                    DMG Taken:
+                    <div class="percent">% <input id="vulnerabilityBreak"></div>
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info"  src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            Non-Weakness Broken enemies only take 90% of the total damage they would otherwise recieve. When Broken,
+                            they take 100% of the total damage dealt to them.
+                        </span>
+                    </div>
+                    Weakness Broken: 
+                    <div id="checkboxContainer"><input type="checkbox" class="checkboxes" id="brokenBreak"></div>
+                </div>
             </div>
         </div>
         <div id="buttonsNormal" class="buttonsWrapper">
