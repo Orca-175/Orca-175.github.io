@@ -32,12 +32,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 0.32rem;
     position: relative;
-    width: 20%;
-    min-width: 300px;
-    padding: 10px;
-    margin: 10px;
+    min-width: 20rem;
+    padding: 0.625rem;
+    margin: 0.625rem;
 }
 
 h1 {
@@ -50,21 +49,21 @@ h4 {
 
 #pageButtons {
     display: flex;
-    gap: 5px;
+    gap: 0.32rem;
     width: 100%;
 }
 
 .inputs {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625rem;
 }
 
 .inputContainer {
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 5px;
+    gap: 0.32rem;;
 }
 
 .percent {
@@ -72,7 +71,7 @@ h4 {
 }
 
 input {
-    width: 50px;
+    width: 3.125rem;
     margin-left: auto;
 }
 
@@ -100,20 +99,20 @@ input {
 
 .tooltipText {
     background-color: var(--hoverBackgroundColor);
-    box-shadow: 5px 5px var(--backgroundColor);
+    box-shadow: 0.32rem 0.32rem var(--backgroundColor);
     position: absolute;
     z-index: 2;
     right: 0;
     width: 55%;
-    padding: 10px;
-    margin: 0px 10px;
+    padding: 0.625rem;
+    margin: 0 0.625rem;
     translate: 0 -50%;
     visibility: hidden;
 }
 
 .tooltipTextTop {
     translate: 0 0;
-    top: 7.5rem;
+    top: 7.2rem;
 }
 
 .tooltipTextBottom {
@@ -126,11 +125,11 @@ input {
 }
 
 .exampleList {
-    margin-left: 15px;
+    margin-left: 0.9375rem;;
 }
 
 li {
-    padding: 5px 0px 0px 0px;
+    padding: 0.32rem 0 0 0;
 }
 
 #normalDMG {
@@ -144,7 +143,7 @@ li {
 .mainContent {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625rem;
     width: 100%;
 }
 
@@ -156,7 +155,7 @@ li {
 .buttonsWrapper {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 0.625rem;
 }
 
 button {
@@ -170,26 +169,26 @@ button:hover, .typeButton:hover {
 
 .typeButton {
     background-color: var(--buttonBackgroundColor);
-    padding: 5px;
+    padding: 0.32rem;
 }
 
 .clicked {
     background-color: var(--backgroundColor);
-    padding: 5px;
+    padding: 0.32rem;
 }
 
 .typeImage {
     display: block;
     height: auto;
-    width: 30px;
+    width: 1.876rem;
 }
 
 .buttons {
     border: none;
     color: var(--textColor);
     background-color: var(--buttonBackgroundColor);
-    padding: 5px;
-    min-width: 70px;
+    padding: 0.32rem;
+    min-width: 4.375rem;
     cursor: pointer;
 }
 
@@ -201,17 +200,18 @@ button:hover, .typeButton:hover {
 }
 
 #checkboxContainer, #checkboxContainerBreak {
+    border: 1.6px solid var(--mainBackgroundColor);
     display: flex;
     justify-content: center;
     float: right;
-    width: 53px;
+    width: 50px;
     margin-left: auto;
 }
 
 .results {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 0.32rem;
     width: 100%;
 }
 
