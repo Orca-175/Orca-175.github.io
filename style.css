@@ -113,12 +113,12 @@ input {
 
 .tooltipTextTop {
     translate: 0 0;
-    top: 8em;
+    top: 7.5rem;
 }
 
 .tooltipTextBottom {
     translate: 0 0;
-    bottom: 0.8em;
+    bottom: 0.8rem;
 }
 
 .tooltip:hover .tooltipText {

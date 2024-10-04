@@ -108,8 +108,8 @@ function clearInputs() {
     // Character Stats
     $("#characterLevel").val(80);
     $("#totalAttack").val("");
-    $("#critRate").val("");
-    $("#critDMG").val("");
+    $("#critRate").val("5");
+    $("#critDMG").val("50");
     $("#DMGPercent").val("");
     $("#resPEN").val("");
     $("#abilityMultiplier").val("");

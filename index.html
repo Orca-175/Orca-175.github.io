@@ -30,7 +30,7 @@
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info"  src="images/information-logotype-in-a-circle.png">
-                        <span class="tooltipText">
+                        <span class="tooltipText tooltipTextTop">
                             Characters deal damage as a percentage of their Total ATTACK stat. This is relevant for calculating an attack's Base DMG.                             
                         </span>
                     </div>   
@@ -52,7 +52,7 @@
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
-                        <span class="tooltipText">
+                        <span class="tooltipText tooltipTextTop">
                             CRITICAL Rate determines how often a Character deals CRIT DMG. This is used to calculate an attack's Average DMG.
                             <br> <br>
                             Examples of Buffs:
@@ -64,7 +64,7 @@
                         </span>
                     </div>   
                     CRIT Rate:
-                    <div class="percent">% <input id="critRate"></div>
+                    <div class="percent">% <input id="critRate" value="5"></div>
                 </div>
                 <div class="inputContainer">
                     <div class="tooltip">
@@ -81,7 +81,7 @@
                         </span>
                     </div>   
                     CRIT DMG:
-                    <div class="percent">% <input id="critDMG"></div>
+                    <div class="percent">% <input id="critDMG" value="50"></div>
                 </div>
                 <div class="inputContainer">
                     <div class="tooltip">
@@ -243,7 +243,7 @@
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
-                        <span class="tooltipText">
+                        <span class="tooltipText tooltipTextTop">
                             DEFENSE Ignore affects how much of an Enemy's DEF stat a Character will ignore when dealing damage to them. 
                             <br> <br>
                             This is functionally the same as DEF Reduction debuffs on an Enemy. 
@@ -449,7 +449,7 @@
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info"  src="images/information-logotype-in-a-circle.png">
-                        <span class="tooltipText">
+                        <span class="tooltipText tooltipTextBottom">
                             DAMAGE Taken, also known as Vulnerability, is a general increase to the damage dealt to an Enemy.
                             <br> <br>
                             Examples of Debuffs:
