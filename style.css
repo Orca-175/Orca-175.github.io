@@ -103,8 +103,8 @@ input {
     z-index: 2;
     right: 0;
     width: 55%;
-    padding: 0.625rem;
-    translate: 0 -50%;
+    padding: 10px;
+    translate: 0 -55%;
     visibility: hidden;
 }
 
