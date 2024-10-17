@@ -18,6 +18,7 @@ function getDamage() {
 
     // Enemy Stats
     let enemyLevel = parseFloat($("#enemyLevel").val());
+    let enemyCount = parseInt($("#enemyCount").val());
     let defReduction = $("#defReduction").val() * 0.01;
     let defMultiplier = (characterLevel + 20) / ((enemyLevel + 20) * (1 - defIgnore - defReduction) + characterLevel + 20);
     let enemyRES = $("#enemyRES").val() * 0.01;
@@ -31,7 +32,7 @@ function getDamage() {
     // Results
     // Final Crit Damage
     let finalCritDMG = baseDamage * (1 + critDMG) * (1 + DMGPercent) * defMultiplier * resMultiplier * (1 + vulnerability) * brokenMultiplier * acheronA4;
-    $("#finalCritDMG").prop("innerHTML", Math.round(finalCritDMG));
+    $("#finalCritDMG").prop("innerHTML", Math.round(finalCritDMG * enemyCount));
 
     // Average Damage
     let averageSum = 0.00;
@@ -42,7 +43,7 @@ function getDamage() {
             averageSum += baseDamage * (1 + DMGPercent) * defMultiplier * resMultiplier * (1 + vulnerability) * brokenMultiplier * acheronA4;
         }
     }
-    $("#finalAverageDMG").prop("innerHTML", Math.round(averageSum / 10000));
+    $("#finalAverageDMG").prop("innerHTML", Math.round((averageSum / 10000) * enemyCount));
 }
 
 function getBreakDamage(characterType) {
@@ -68,6 +69,7 @@ function getBreakDamage(characterType) {
 
     // Enemy Stats
     let enemyLevel = parseFloat($("#enemyLevelBreak").val());
+    let enemyCount = parseInt($("#enemyCountBreak").val());
     let maxToughness = parseFloat($("#maxToughness").val())
     let toughnessMultiplier = 0.5 + (maxToughness / 40);
     let defReduction = $("#defReductionBreak").val() * 0.01;
@@ -84,7 +86,7 @@ function getBreakDamage(characterType) {
     // Super Break Damage
     let finalSuperBreakDMG = levelMultiplier[characterLevel - 1] * (finalToughnessReduction / 10) * (1 + breakEffect) * 
     (1 + superBreakMultiplier) * defMultiplier * resMultiplier * (1 + vulnerability) * brokenMultiplier;
-    $("#finalSuperBreakDMG").prop("innerHTML", Math.round(finalSuperBreakDMG));
+    $("#finalSuperBreakDMG").prop("innerHTML", Math.round(finalSuperBreakDMG * enemyCount));
 
     // Break Damage
     let breakBaseDMG;
@@ -101,7 +103,7 @@ function getBreakDamage(characterType) {
         return;
     }
     let finalBreakDMG = breakBaseDMG * (1 + breakEffect) * defMultiplier * resMultiplier * (1 + vulnerability) * brokenMultiplier;
-    $("#finalBreakDMG").prop("innerHTML", Math.round(finalBreakDMG));
+    $("#finalBreakDMG").prop("innerHTML", Math.round(finalBreakDMG * enemyCount));
 }
 
 function clearInputs() {
@@ -111,6 +113,7 @@ function clearInputs() {
     $("#critRate").val("5");
     $("#critDMG").val("50");
     $("#DMGPercent").val("");
+    $("#defIgnore").val("");
     $("#resPEN").val("");
     $("#abilityMultiplier").val("");
     $("#acheronA2_1").prop("checked", false);
@@ -118,6 +121,7 @@ function clearInputs() {
 
    // Enemy Stats
     $("#enemyLevel").val(95);
+    $("#enemyCount").val(1);
     $("#defReduction").val("");
     $("#enemyRES").val(20);
     $("#vulnerability").val("");
@@ -133,9 +137,11 @@ function clearInputsBreak() {
     $("#weaknessBreakEfficiency").val("");
     $("#defIgnoreBreak").val("");
     $("#resPENBreak").val("");
+    clearTypeButtons();
 
     // Enemy Stats
     $("#enemyLevelBreak").val(95);
+    $("#enemyCountBreak").val(1);
     $("#maxToughness").val("");
     $("#defReductionBreak").val("");
     $("#enemyRESBreak").val(20);
@@ -148,14 +154,12 @@ function clearTypeButtons() {
     $(".clicked").addClass("typeButton").removeClass("clicked")
 }
 
-let buttonBackgroundColor = "#683737";
-let hoverBackgroundColor = "#412b2b";
 let characterType = "";
 
-$("#breakDMGInputs").hide().removeClass("hidden").addClass("inputs");
-$("#enemyStatsBreak").hide().removeClass("hidden").addClass("inputs");
-$("#buttonsBreak").hide().removeClass("hidden").addClass("buttonsWrapper");
-$("#resultsBreak").hide().removeClass("hidden").addClass("results");
+$("#breakDMGInputs").hide().removeClass("hidden");
+$("#enemyStatsBreak").hide().removeClass("hidden");
+$("#buttonsBreak").hide().removeClass("hidden");
+$("#resultsBreak").hide().removeClass("hidden");
 
 
 $("#breakDMG").click(() => {
@@ -202,7 +206,6 @@ $("#submitBreak").click(() => {
 
 $("#clearBreak").click(() => {
     clearInputsBreak();
-    clearTypeButtons();
 });
 
 // Type Buttons

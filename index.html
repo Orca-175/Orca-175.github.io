@@ -17,6 +17,7 @@
             <h4>In-combat Character Stats:</h4>
             <!-- Character Stats -->
             <div id="normalDMGInputs" class="inputs"> 
+                <!-- Character Level-->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info"  src="images/information-logotype-in-a-circle.png">
@@ -27,6 +28,7 @@
                     Character Level:
                     <input id="characterLevel" value="80">
                 </div>
+                <!-- Total ATK-->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info"  src="images/information-logotype-in-a-circle.png">
@@ -37,6 +39,7 @@
                     Total ATK:
                     <input id="totalAttack">
                 </div>
+                <!-- Ability Multiplier -->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
@@ -47,6 +50,7 @@
                     Ability Multiplier:
                     <div class="percent">% <input id="abilityMultiplier"></div>
                 </div>
+                <!-- Crit Rate -->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
@@ -57,6 +61,7 @@
                             <ul class="exampleList">
                                 <li>Herta's E2</li>
                                 <li>Himeko's A6</li>
+                                <li>Yukong's Ultimate</li>
                                 <li>Rutilant Arena's 2-Piece Bonus</li>
                             </ul>
                         </span>
@@ -64,6 +69,7 @@
                     CRIT Rate:
                     <div class="percent">% <input id="critRate" value="5"></div>
                 </div>
+                <!-- Crit DMG -->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
@@ -82,6 +88,7 @@
                     CRIT DMG:
                     <div class="percent">% <input id="critDMG" value="50"></div>
                 </div>
+                <!-- DMG Boost -->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
@@ -107,6 +114,7 @@
                     DMG Boost:
                     <div class="percent">% <input id="DMGPercent"></div>
                 </div>
+                <!-- DEF Ignore -->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
@@ -126,6 +134,7 @@
                     DEF Ignore:
                     <div class="percent">% <input id="defIgnore"></div>
                 </div>
+                <!-- RES PEN -->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
@@ -144,6 +153,7 @@
                     RES PEN:
                     <div class="percent">% <input id="resPEN"></div>
                 </div>
+                <!-- Acheron A4 -->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
@@ -163,7 +173,7 @@
             </div>
 
             <!-- Character Stats Break -->
-            <div id="breakDMGInputs" class="hidden">
+            <div id="breakDMGInputs" class="hidden inputs">
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
@@ -318,6 +328,16 @@
                     <div class="tooltip">
                         <img class="info"  src="images/information-logotype-in-a-circle.png">
                         <span class="tooltipText">
+                            The number of Enemies that an attack will hit. 
+                        </span>
+                    </div>
+                    Number of Enemies: 
+                    <input id="enemyCount" value="1">
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info"  src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
                             DEF Reduction affects how much of an Enemy's DEF stat is reduced. 
                             <br> <br>
                             This is functionally the same as DEF Ignore buffs on a Character. 
@@ -383,7 +403,7 @@
                 </div>
             </div>
             <!-- Enemy Stats Break -->
-            <div id="enemyStatsBreak" class="hidden">
+            <div id="enemyStatsBreak" class="hidden inputs">
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info"  src="images/information-logotype-in-a-circle.png">
@@ -394,6 +414,16 @@
                     </div>
                     Enemy Level: 
                     <input id="enemyLevelBreak" value="95">
+                </div>
+                <div class="inputContainer">
+                    <div class="tooltip">
+                        <img class="info"  src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            The number of Enemies that an attack will hit.                         
+                        </span>
+                    </div>
+                    Number of Enemies: 
+                    <input id="enemyCountBreak" value="1">
                 </div>
                 <div class="inputContainer">
                     <div class="tooltip">
@@ -481,7 +511,7 @@
             <button class="buttons" id="submit">Submit</button>
             <button class="buttons" id="clear">Clear</button>
         </div>
-        <div id="buttonsBreak" class="hidden">
+        <div id="buttonsBreak" class="hidden buttonsWrapper">
             <button class="buttons" id="submitBreak">Submit</button>
             <button class="buttons" id="clearBreak">Clear</button>
         </div>
@@ -490,7 +520,7 @@
             <div>Final Crit DMG: <div id="finalCritDMG"></div></div>
             <div>Average DMG: <div id="finalAverageDMG"></div></div>
         </div>
-        <div id="resultsBreak" class="hidden">
+        <div id="resultsBreak" class="hidden results">
             <h4>Results:</h4>
             <div>Super Break DMG: <div id="finalSuperBreakDMG"></div></div>
             <div>Break DMG: <div id="finalBreakDMG"></div></div>
