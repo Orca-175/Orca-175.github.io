@@ -185,6 +185,18 @@ button:hover, .typeButton:hover {
     width: 1.876rem;
 }
 
+.abilityButton {
+    font-size: 0.7rem;
+    text-align: center;
+    width: 3rem;
+    user-select: none;
+}
+
+.abilitySubInput {
+    align-self: flex-end;
+    width: 95%;
+}
+
 .buttons {
     border: none;
     color: var(--textColor);

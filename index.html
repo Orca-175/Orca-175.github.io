@@ -48,7 +48,31 @@
                         </span>
                     </div>   
                     Ability Multiplier:
+                    <div class="typeButton abilityButton" id="blastButton">Blast</div>
+                    <div class="typeButton abilityButton" id="bounceButton">Bounce</div>
                     <div class="percent">% <input id="abilityMultiplier"></div>
+                </div>
+                <!-- Blast -->
+                <div class="hidden inputContainer abilitySubInput" id="blastInput">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText tooltipTextTop">
+                            This is the Multiplier for adjacent enemies in Blast Abilities.
+                        </span>
+                    </div>   
+                    Adjacent Multiplier:
+                    <div class="percent">% <input id="blastMultiplier" value=""></div>
+                </div>
+                <!-- Bounce -->
+                <div class="hidden inputContainer abilitySubInput" id="bounceInput">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText tooltipTextTop">
+                            This is how many times Bounce Abilities deal damage.
+                        </span>
+                    </div>   
+                    Number of Hits:
+                    <input id="bounceHits" value="">
                 </div>
                 <!-- Crit Rate -->
                 <div class="inputContainer">
@@ -328,7 +352,8 @@
                     <div class="tooltip">
                         <img class="info"  src="images/information-logotype-in-a-circle.png">
                         <span class="tooltipText">
-                            The number of Enemies that an attack will hit. 
+                            The number of Enemies that an attack will hit. If an attack is a Blast Ability, that attack will only consider a maximum
+                            of 3 targets, even if more than 3 are specified.
                         </span>
                     </div>
                     Number of Enemies: 
