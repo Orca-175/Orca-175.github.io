@@ -48,15 +48,15 @@
                         </span>
                     </div>   
                     Ability Multiplier:
-                    <div class="typeButton abilityButton" id="blastButton">Blast</div>
-                    <div class="typeButton abilityButton" id="bounceButton">Bounce</div>
+                    <div class="abilityButton" id="blastButton">Blast</div>
+                    <div class="abilityButton" id="bounceButton">Bounce</div>
                     <div class="percent">% <input id="abilityMultiplier"></div>
                 </div>
                 <!-- Blast -->
                 <div class="hidden inputContainer abilitySubInput" id="blastInput">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
-                        <span class="tooltipText tooltipTextTop">
+                        <span class="tooltipText">
                             This is the Multiplier for adjacent enemies in Blast Abilities.
                         </span>
                     </div>   
@@ -67,8 +67,8 @@
                 <div class="hidden inputContainer abilitySubInput" id="bounceInput">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
-                        <span class="tooltipText tooltipTextTop">
-                            This is how many times Bounce Abilities deal damage.
+                        <span class="tooltipText">
+                            This is how many instances of damage Bounce Abilities deal.
                         </span>
                     </div>   
                     Number of Hits:
@@ -198,6 +198,7 @@
 
             <!-- Character Stats Break -->
             <div id="breakDMGInputs" class="hidden inputs">
+                <!-- Character Level Break-->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
@@ -209,6 +210,7 @@
                     Character Level: 
                     <input id="characterLevelBreak" value="80">
                 </div>
+                <!-- Toughness Reduction -->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
@@ -218,9 +220,50 @@
                             This has no effect on Break DMG.
                         </span>
                     </div>   
-                    Base Toughness Reduction: 
+                    Toughness Reduction: 
+                    <div class="abilityButton" id="blastButtonBreak">Blast</div>
+                    <div class="abilityButton" id="bounceButtonBreak">Bounce</div>
                     <input id="baseToughnessReduction">
                 </div>
+                <!-- Blast Break -->
+                <div class="hidden inputContainer abilitySubInput" id="blastInputBreak">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            This is the Toughness Reduction for adjacent enemies in Blast Abilities.
+                        </span>
+                    </div>   
+                    Adjacent Toughness Reduction:
+                    <input id="blastToughnessReduction" value="">
+                </div>
+                <!-- Bounce Hits Break -->
+                <div class="hidden inputContainer abilitySubInput bounceClassBreak" id="bounceInputBreak">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            This is how many instances of damage Bounce Abilities deal.
+                        </span>
+                    </div>   
+                    Number of Hits:
+                    <input id="bounceHitsBreak" value="">
+                </div>
+                <!-- Bounce First Hit Break -->
+                <div class="hidden inputContainer abilitySubInput bounceClassBreak" id="bounceInputBreak">
+                    <div class="tooltip">
+                        <img class="info" src="images/information-logotype-in-a-circle.png">
+                        <span class="tooltipText">
+                            Some Bounce Abilities recieve greater Weakness Break Efficiency on their first instance of damage.
+                            <br> <br>
+                            Examples of Buffs:
+                            <ul class="exampleList">
+                                <li>Harmony Trailblazer's A2 Bonus Trace</li>
+                            </ul>
+                        </span>
+                    </div>   
+                    First Hit Break Efficiency:
+                    <div class="percent">% <input id="bounceFirstHit" value=""></div>
+                </div>
+                <!-- Break Effect -->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
@@ -238,6 +281,7 @@
                     Break Effect: 
                     <div class="percent">% <input id="breakEffect"></div>
                 </div>
+                <!-- Super Break Damage Multiplier -->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
@@ -257,6 +301,7 @@
                     Super Break DMG Multiplier: 
                     <div class="percent">% <input id="superBreakMultiplier" value="100"></div>
                 </div>
+                <!-- Weakness Break Efficiency -->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
@@ -274,6 +319,7 @@
                     Weakness Break Efficiency: 
                     <div class="percent">% <input id="weaknessBreakEfficiency"></div>
                 </div>
+                <!-- DEF Ignore Break -->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
@@ -294,6 +340,7 @@
                     DEF Ignore: 
                     <div class="percent">% <input id="defIgnoreBreak"></div>
                 </div>
+                <!-- RES PEN Break -->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
@@ -312,6 +359,7 @@
                     RES PEN: 
                     <div class="percent">% <input id="resPENBreak"></div>
                 </div>
+                <!-- Character Type -->
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info" src="images/information-logotype-in-a-circle.png">
@@ -382,7 +430,7 @@
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info"  src="images/information-logotype-in-a-circle.png">
-                        <span class="tooltipText tooltipTextBottom">
+                        <span class="tooltipText">
                             An Enemy's RESISTANCE to a certain Type determines how much damage of that Type is reduced when damage is dealt to them.
                             <br> <br>
                             Reductions to RES are functionally the same as RES PEN.
@@ -400,7 +448,7 @@
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info"  src="images/information-logotype-in-a-circle.png">
-                        <span class="tooltipText tooltipTextBottom">
+                        <span class="tooltipText">
                             DAMAGE Taken, also known as Vulnerability, is a general increase to the damage taken by an Enemy.
                             <br> <br>
                             Effects of this type stack multiplicatively with and should not be confused with DMG Boost.
@@ -486,7 +534,7 @@
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info"  src="images/information-logotype-in-a-circle.png">
-                        <span class="tooltipText tooltipTextBottom">
+                        <span class="tooltipText">
                             An Enemy's RESISTANCE to a certain Type determines how much damage of that Type is reduced when damage is dealt to them.
                             <br> <br>
                             Reductions to RES are functionally the same as RES PEN.
@@ -504,7 +552,7 @@
                 <div class="inputContainer">
                     <div class="tooltip">
                         <img class="info"  src="images/information-logotype-in-a-circle.png">
-                        <span class="tooltipText tooltipTextBottom">
+                        <span class="tooltipText">
                             DAMAGE Taken, also known as Vulnerability, is a general increase to the damage dealt to an Enemy.
                             <br> <br>
                             Examples of Debuffs:

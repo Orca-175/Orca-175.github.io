@@ -57,9 +57,26 @@ function getBlastDamageAverage(stats) {
 function getBreakDamage(stats) {
     // Results
     // Super Break Damage
-    let finalSuperBreakDMG = stats.levelMultiplier[stats.characterLevel - 1] * (stats.finalToughnessReduction / 10) * (1 + stats.breakEffect) * 
-    (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier;
-    $("#finalSuperBreakDMG").prop("innerHTML", Math.round(finalSuperBreakDMG * stats.enemyCount));
+    let finalSuperBreakDMG;
+    if (abilityTypeBreak == "blast") {
+        finalSuperBreakDMG = stats.levelMultiplier[stats.characterLevel - 1] * (stats.finalToughnessReduction / 10) * (1 + stats.breakEffect) * 
+        (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier;
+        finalSuperBreakDMG += (stats.levelMultiplier[stats.characterLevel - 1] * (stats.blastFinalToughnessReduction / 10) * (1 + stats.breakEffect) * 
+        (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier) * stats.blastCount;
+        $("#finalSuperBreakDMG").prop("innerHTML", Math.round(finalSuperBreakDMG));
+    } else if (abilityTypeBreak == "bounce" && stats.bounceFirstHit == "") {
+        finalSuperBreakDMG = stats.levelMultiplier[stats.characterLevel - 1] * (stats.finalToughnessReduction / 10) * (1 + stats.breakEffect) * 
+        (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier * stats.bounceHits;
+        $("#finalSuperBreakDMG").prop("innerHTML", Math.round(finalSuperBreakDMG));
+    } else if (abilityTypeBreak == "bounce" && stats.bounceFirstHit > 0) {
+        finalSuperBreakDMG = stats.levelMultiplier[stats.characterLevel - 1] * (stats.finalToughnessReduction / 10) * (1 + stats.breakEffect) * 
+        (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier * (stats.bounceHits - 1);
+        finalSuperBreakDMG += stats.levelMultiplier[stats.characterLevel - 1] * (stats.firstHitToughnessReduction / 10) * (1 + stats.breakEffect) * 
+        (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier;
+        $("#finalSuperBreakDMG").prop("innerHTML", Math.round(finalSuperBreakDMG));
+    } else {
+        $("#finalSuperBreakDMG").prop("innerHTML", Math.round(finalSuperBreakDMG * stats.enemyCount));
+    }
 
     // Break Damage
     let breakBaseDMG;
@@ -72,7 +89,7 @@ function getBreakDamage(stats) {
     } else if (characterType == "quantum" || characterType == "imaginary") {
         breakBaseDMG = 0.5 * stats.levelMultiplier[stats.characterLevel - 1] * stats.toughnessMultiplier;
     } else {
-        $("#finalBreakDMG").prop("innerHTML", "Missing Character Type.");
+        $("#finalBreakDMG").prop("innerHTML", "Missing Character Type");
         return;
     }
     let finalBreakDMG = breakBaseDMG * (1 + stats.breakEffect) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier;
@@ -108,6 +125,9 @@ function clearInputsBreak() {
     $("#characterLevelBreak").val(80);
     $("#breakEffect").val("");
     $("#baseToughnessReduction").val("");
+    $("#blastToughnessReduction").val("");
+    $("#bounceHitsBreak").val("");
+    $("#bounceFirstHit").val("");
     $("#superBreakMultiplier").val(100);
     $("#weaknessBreakEfficiency").val("");
     $("#defIgnoreBreak").val("");
@@ -131,6 +151,7 @@ function clearTypeButtons() {
 
 let characterType = "";
 let abilityType = "normal";
+let abilityTypeBreak = "normal";
 
 $("#breakDMGInputs").hide().removeClass("hidden");
 $("#enemyStatsBreak").hide().removeClass("hidden");
@@ -138,6 +159,8 @@ $("#buttonsBreak").hide().removeClass("hidden");
 $("#resultsBreak").hide().removeClass("hidden");
 $("#blastInput").hide().removeClass("hidden");
 $("#bounceInput").hide().removeClass("hidden");
+$("#blastInputBreak").hide().removeClass("hidden");
+$(".bounceClassBreak").hide().removeClass("hidden");
 
 $("#breakDMG").click(() => {
     $("#breakDMGInputs").show();
@@ -171,7 +194,6 @@ $("#acheronA4_2").click(() => {
 
 $("#blastButton").click(() => {
     $("#blastInput").toggle();
-    $("#blastButton").toggleClass("abilityButtonClicked");
     if ($("#bounceInput").is(":visible")) {
         $("#bounceInput").hide();
     }
@@ -184,7 +206,6 @@ $("#blastButton").click(() => {
 
 $("#bounceButton").click(() => {
     $("#bounceInput").toggle();
-    $("#bounceButton").toggleClass("abilityButtonClicked");
     if ($("#blastInput").is(":visible")) {
         $("#blastInput").hide();
     }
@@ -192,6 +213,30 @@ $("#bounceButton").click(() => {
         abilityType = "normal";
     } else {
         abilityType = "bounce";
+    }
+});
+
+$("#blastButtonBreak").click(() => {
+    $("#blastInputBreak").toggle();
+    if ($(".bounceClassBreak").is(":visible")) {
+        $(".bounceClassBreak").hide();
+    }
+    if (abilityTypeBreak == "blast") {
+        abilityTypeBreak = "normal";
+    } else {
+        abilityTypeBreak = "blast";
+    }
+});
+
+$("#bounceButtonBreak").click(() => {
+    $(".bounceClassBreak").toggle();
+    if ($("#blastInputBreak").is(":visible")) {
+        $("#blastInputBreak").hide();
+    }
+    if (abilityTypeBreak == "bounce") {
+        abilityTypeBreak = "normal";
+    } else {
+        abilityTypeBreak = "bounce";
     }
 });
 
@@ -245,14 +290,19 @@ $("#clear").click(() => {
 $("#submitBreak").click(() => {
     const stats = new function Stats_Break() {
         // Character Stats
-        this.characterLevel = parseFloat($("#characterLevel").val());
+        this.characterLevel = parseFloat($("#characterLevelBreak").val());
         this.breakEffect = $("#breakEffect").val() * 0.01;
         this.superBreakMultiplier = $("#superBreakMultiplier").val() * 0.01;
         this.baseToughnessReduction = parseFloat($("#baseToughnessReduction").val());
+        this.blastToughnessReduction = parseFloat($("#blastToughnessReduction").val());
+        this.bounceHits = parseInt($("#bounceHitsBreak").val());
+        this.bounceFirstHit = $("#bounceFirstHit").val() * 0.01;
         this.weaknessBreakEfficiency = $("#weaknessBreakEfficiency").val() * 0.01;
         this.defIgnore = $("#defIgnoreBreak").val() * 0.01;
         this.resPEN = $("#resPENBreak").val() * 0.01;
         this.finalToughnessReduction = this.baseToughnessReduction * (1 + this.weaknessBreakEfficiency);
+        this.blastFinalToughnessReduction = this.blastToughnessReduction * (1 + this.weaknessBreakEfficiency);
+        this.firstHitToughnessReduction = this.baseToughnessReduction * (1 + this.bounceFirstHit + this.weaknessBreakEfficiency);
         this.levelMultiplier = [
             54.0000, 58.0000, 62.0000, 67.5264, 70.5094, 73.5228, 76.5660, 79.6385, 82.7395, 85.8684,
             91.4944, 97.0680, 102.5892, 108.0579, 113.4743, 118.8383, 124.1499, 129.4091, 134.6159, 139.7703,
@@ -267,6 +317,11 @@ $("#submitBreak").click(() => {
         // Enemy Stats
         this.enemyLevel = parseFloat($("#enemyLevelBreak").val());
         this.enemyCount = parseInt($("#enemyCountBreak").val());
+        if (this.enemyCount >= 3) {
+            this.blastCount = 2;
+        } else if (this.enemyCount <= 2) {
+            this.blastCount = this.enemyCount - 1;
+        }
         this.maxToughness = parseFloat($("#maxToughness").val())
         this.toughnessMultiplier = 0.5 + (this.maxToughness / 40);
         this.defReduction = $("#defReductionBreak").val() * 0.01;

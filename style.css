@@ -29,7 +29,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 0.625rem;
-    min-width: 20rem;
+    min-width: 21.7rem;
     padding: 0.625rem;
     margin: 0.625rem;
 }
@@ -70,7 +70,7 @@ h4 {
 }
 
 input {
-    width: 3.125rem;
+    width: 2.5rem;
     margin-left: auto;
 }
 
@@ -117,10 +117,6 @@ input {
     top: 1.3rem;
 }
 
-.tooltipTextBottom {
-    translate: 0 -55%;
-}
-
 .tooltip:hover .tooltipText {
     visibility: visible;
 }
@@ -151,7 +147,9 @@ li {
 
 #characterType {
     display: flex;
-    justify-content: space-evenly;
+    width: 100%;
+    gap: 0.32rem;
+    justify-content: center;
 }
 
 .buttonsWrapper {
@@ -164,7 +162,7 @@ button {
     border: none;
 }
 
-button:hover, .typeButton:hover {
+button:hover, .typeButton:hover, .abilityButton:hover {
     background-color: var(--hoverBackgroundColor);
     cursor: pointer;
 }
@@ -186,8 +184,11 @@ button:hover, .typeButton:hover {
 }
 
 .abilityButton {
-    font-size: 0.7rem;
+    display: block; 
+    background-color: var(--buttonBackgroundColor);
+    font-size: 0.6rem;
     text-align: center;
+    padding: 0.32em;
     width: 3rem;
     user-select: none;
 }
