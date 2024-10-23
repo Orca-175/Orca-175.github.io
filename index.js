@@ -44,10 +44,10 @@ function getBlastDamageAverage(stats) {
     let averageSum = 0.00;
     for (let i = 0; i < 10000; i++) {
         if (Math.random() <= stats.critRate) {
-            averageSum += stats.baseDamage * (1 + stats.critDMG) * (1 + stats.DMGPercent) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * 
+            averageSum += stats.blastBaseDamage * (1 + stats.critDMG) * (1 + stats.DMGPercent) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * 
             stats.brokenMultiplier * stats.acheronA4;
         } else {
-            averageSum += stats.baseDamage * (1 + stats.DMGPercent) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * statsbrokenMultiplier * 
+            averageSum += stats.blastBaseDamage * (1 + stats.DMGPercent) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier * 
             stats.acheronA4;
         }
     }
@@ -57,20 +57,17 @@ function getBlastDamageAverage(stats) {
 function getBreakDamage(stats) {
     // Results
     // Super Break Damage
-    let finalSuperBreakDMG;
-    if (abilityTypeBreak == "blast") {
-        finalSuperBreakDMG = stats.levelMultiplier[stats.characterLevel - 1] * (stats.finalToughnessReduction / 10) * (1 + stats.breakEffect) * 
+    let finalSuperBreakDMG = stats.levelMultiplier[stats.characterLevel - 1] * (stats.finalToughnessReduction / 10) * (1 + stats.breakEffect) * 
         (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier;
+    if (abilityTypeBreak == "blast") {
         finalSuperBreakDMG += (stats.levelMultiplier[stats.characterLevel - 1] * (stats.blastFinalToughnessReduction / 10) * (1 + stats.breakEffect) * 
         (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier) * stats.blastCount;
         $("#finalSuperBreakDMG").prop("innerHTML", Math.round(finalSuperBreakDMG));
     } else if (abilityTypeBreak == "bounce" && stats.bounceFirstHit == "") {
-        finalSuperBreakDMG = stats.levelMultiplier[stats.characterLevel - 1] * (stats.finalToughnessReduction / 10) * (1 + stats.breakEffect) * 
-        (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier * stats.bounceHits;
+        finalSuperBreakDMG *= stats.bounceHits;
         $("#finalSuperBreakDMG").prop("innerHTML", Math.round(finalSuperBreakDMG));
     } else if (abilityTypeBreak == "bounce" && stats.bounceFirstHit > 0) {
-        finalSuperBreakDMG = stats.levelMultiplier[stats.characterLevel - 1] * (stats.finalToughnessReduction / 10) * (1 + stats.breakEffect) * 
-        (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier * (stats.bounceHits - 1);
+        finalSuperBreakDMG *= (stats.bounceHits - 1);
         finalSuperBreakDMG += stats.levelMultiplier[stats.characterLevel - 1] * (stats.firstHitToughnessReduction / 10) * (1 + stats.breakEffect) * 
         (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier;
         $("#finalSuperBreakDMG").prop("innerHTML", Math.round(finalSuperBreakDMG));
@@ -162,17 +159,6 @@ $("#bounceInput").hide().removeClass("hidden");
 $("#blastInputBreak").hide().removeClass("hidden");
 $(".bounceClassBreak").hide().removeClass("hidden");
 
-$("#breakDMG").click(() => {
-    $("#breakDMGInputs").show();
-    $("#enemyStatsBreak").show();
-    $("#buttonsBreak").show();
-    $("#resultsBreak").show();
-    $("#normalDMGInputs").hide();
-    $("#enemyStats").hide();
-    $("#buttonsNormal").hide();
-    $("#resultsNormal").hide();
-}); 
-
 $("#normalDMG").click(() => {
     $("#normalDMGInputs").show();
     $("#enemyStats").show();
@@ -183,6 +169,17 @@ $("#normalDMG").click(() => {
     $("#buttonsBreak").hide();
     $("#resultsBreak").hide();
 });
+
+$("#breakDMG").click(() => {
+    $("#breakDMGInputs").show();
+    $("#enemyStatsBreak").show();
+    $("#buttonsBreak").show();
+    $("#resultsBreak").show();
+    $("#normalDMGInputs").hide();
+    $("#enemyStats").hide();
+    $("#buttonsNormal").hide();
+    $("#resultsNormal").hide();
+}); 
 
 $("#acheronA4_1").click(() => {
     $("#acheronA4_2").prop("checked", false);
@@ -279,7 +276,7 @@ $("#submit").click(() => {
         if ($("#broken").prop("checked")) {
             this.brokenMultiplier = 1;
         }
-    }
+    };
     getDamage(stats);
 });
 
@@ -333,7 +330,7 @@ $("#submitBreak").click(() => {
         if ($("#brokenBreak").prop("checked")) {
             this.brokenMultiplier = 1;
         }
-    }
+    };
     getBreakDamage(stats);
 });
 

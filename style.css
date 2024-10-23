@@ -184,7 +184,6 @@ button:hover, .typeButton:hover, .abilityButton:hover {
 }
 
 .abilityButton {
-    display: block; 
     background-color: var(--buttonBackgroundColor);
     font-size: 0.6rem;
     text-align: center;
@@ -204,7 +203,6 @@ button:hover, .typeButton:hover, .abilityButton:hover {
     background-color: var(--buttonBackgroundColor);
     padding: 0.32rem;
     min-width: 4.375rem;
-    cursor: pointer;
 }
 
 .checkboxes {
