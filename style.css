@@ -185,10 +185,10 @@ button:hover, .typeButton:hover, .abilityButton:hover {
 
 .abilityButton {
     background-color: var(--buttonBackgroundColor);
-    font-size: 0.6rem;
+    font-size: 0.59rem;
     text-align: center;
-    padding: 0.32em;
-    width: 3rem;
+    padding: 0.4em;
+    width: 2.7rem;
     user-select: none;
 }
 

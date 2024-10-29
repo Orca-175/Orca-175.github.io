@@ -1,7 +1,7 @@
 function getDamage(stats) {
     // Crit Damage
-    let finalCritDMG = stats.baseDamage * (1 + stats.critDMG) * (1 + stats.DMGPercent) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * 
-    stats.brokenMultiplier * stats.acheronA4;
+    let finalCritDMG = stats.baseDamage * (1 + stats.critDMG) * (1 + stats.DMGPercent) * stats.defMultiplier * 
+        stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier * stats.acheronA4;
 
     if (abilityType == "blast") {
         finalCritDMG += getBlastDamageCrit(stats);
@@ -16,11 +16,11 @@ function getDamage(stats) {
     let averageSum = 0.00;
     for (let i = 0; i < 10000; i++) {
         if (Math.random() <= stats.critRate) {
-            averageSum += stats.baseDamage * (1 + stats.critDMG) * (1 + stats.DMGPercent) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * 
-            stats.brokenMultiplier * stats.acheronA4;
+            averageSum += stats.baseDamage * (1 + stats.critDMG) * (1 + stats.DMGPercent) * stats.defMultiplier * 
+                stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier * stats.acheronA4;
         } else {
-            averageSum += stats.baseDamage * (1 + stats.DMGPercent) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier * 
-            stats.acheronA4;
+            averageSum += stats.baseDamage * (1 + stats.DMGPercent) * stats.defMultiplier * stats.resMultiplier * 
+                (1 + stats.vulnerability) * stats.brokenMultiplier * stats.acheronA4;
         }
     }
 
@@ -35,8 +35,8 @@ function getDamage(stats) {
 }
 
 function getBlastDamageCrit(stats) {
-    let finalCritDMG = stats.blastBaseDamage * (1 + stats.critDMG) * (1 + stats.DMGPercent) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * 
-    stats.brokenMultiplier * stats.acheronA4;
+    let finalCritDMG = stats.blastBaseDamage * (1 + stats.critDMG) * (1 + stats.DMGPercent) * stats.defMultiplier * 
+        stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier * stats.acheronA4;
     return finalCritDMG * stats.blastCount;
 }
 
@@ -44,32 +44,38 @@ function getBlastDamageAverage(stats) {
     let averageSum = 0.00;
     for (let i = 0; i < 10000; i++) {
         if (Math.random() <= stats.critRate) {
-            averageSum += stats.blastBaseDamage * (1 + stats.critDMG) * (1 + stats.DMGPercent) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * 
-            stats.brokenMultiplier * stats.acheronA4;
+            averageSum += stats.blastBaseDamage * (1 + stats.critDMG) * (1 + stats.DMGPercent) * stats.defMultiplier * 
+                stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier * stats.acheronA4;
         } else {
-            averageSum += stats.blastBaseDamage * (1 + stats.DMGPercent) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier * 
-            stats.acheronA4;
+            averageSum += stats.blastBaseDamage * (1 + stats.DMGPercent) * stats.defMultiplier * stats.resMultiplier * 
+                (1 + stats.vulnerability) * stats.brokenMultiplier * stats.acheronA4;
         }
     }
     return averageSum * stats.blastCount;
 }
 
 function getBreakDamage(stats) {
-    // Results
     // Super Break Damage
-    let finalSuperBreakDMG = stats.levelMultiplier[stats.characterLevel - 1] * (stats.finalToughnessReduction / 10) * (1 + stats.breakEffect) * 
-        (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier;
+    let finalSuperBreakDMG = stats.levelMultiplier[stats.characterLevel - 1] * (stats.finalToughnessReduction / 10) * 
+        (1 + stats.breakEffect) * (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * 
+        (1 + stats.vulnerability) * stats.brokenMultiplier;
+
     if (abilityTypeBreak == "blast") {
-        finalSuperBreakDMG += (stats.levelMultiplier[stats.characterLevel - 1] * (stats.blastFinalToughnessReduction / 10) * (1 + stats.breakEffect) * 
-        (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier) * stats.blastCount;
-        $("#finalSuperBreakDMG").prop("innerHTML", Math.round(finalSuperBreakDMG));
-    } else if (abilityTypeBreak == "bounce" && stats.bounceFirstHit == "") {
-        finalSuperBreakDMG *= stats.bounceHits;
-        $("#finalSuperBreakDMG").prop("innerHTML", Math.round(finalSuperBreakDMG));
+        finalSuperBreakDMG += (stats.levelMultiplier[stats.characterLevel - 1] * 
+            (stats.blastFinalToughnessReduction / 10) * (1 + stats.breakEffect) * (1 + stats.superBreakMultiplier) * 
+            stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier) * 
+            stats.blastCount;
     } else if (abilityTypeBreak == "bounce" && stats.bounceFirstHit > 0) {
         finalSuperBreakDMG *= (stats.bounceHits - 1);
-        finalSuperBreakDMG += stats.levelMultiplier[stats.characterLevel - 1] * (stats.firstHitToughnessReduction / 10) * (1 + stats.breakEffect) * 
-        (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier;
+        finalSuperBreakDMG += stats.levelMultiplier[stats.characterLevel - 1] * 
+            (stats.firstHitToughnessReduction / 10) * (1 + stats.breakEffect) * 
+            (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * 
+            (1 + stats.vulnerability) * stats.brokenMultiplier;
+    } else if (abilityTypeBreak == "bounce") {
+        finalSuperBreakDMG *= stats.bounceHits;
+    }      
+    
+    if (abilityTypeBreak != "normal") {
         $("#finalSuperBreakDMG").prop("innerHTML", Math.round(finalSuperBreakDMG));
     } else {
         $("#finalSuperBreakDMG").prop("innerHTML", Math.round(finalSuperBreakDMG * stats.enemyCount));
@@ -89,7 +95,9 @@ function getBreakDamage(stats) {
         $("#finalBreakDMG").prop("innerHTML", "Missing Character Type");
         return;
     }
-    let finalBreakDMG = breakBaseDMG * (1 + stats.breakEffect) * stats.defMultiplier * stats.resMultiplier * (1 + stats.vulnerability) * stats.brokenMultiplier;
+
+    let finalBreakDMG = breakBaseDMG * (1 + stats.breakEffect) * stats.defMultiplier * stats.resMultiplier * 
+        (1 + stats.vulnerability) * stats.brokenMultiplier;
     $("#finalBreakDMG").prop("innerHTML", Math.round(finalBreakDMG * stats.enemyCount));
 }
 
@@ -263,12 +271,13 @@ $("#submit").click(() => {
         this.enemyLevel = parseFloat($("#enemyLevel").val());
         this.enemyCount = parseInt($("#enemyCount").val());
         if (this.enemyCount >= 3) {
-            this.blastCount = 3;
+            this.blastCount = 2;
         } else if (this.enemyCount <= 2) {
             this.blastCount = this.enemyCount - 1;
         }
         this.defReduction = $("#defReduction").val() * 0.01;
-        this.defMultiplier = (this.characterLevel + 20) / ((this.enemyLevel + 20) * (1 - this.defIgnore - this.defReduction) + this.characterLevel + 20);
+        this.defMultiplier = (this.characterLevel + 20) / ((this.enemyLevel + 20) * 
+            (1 - this.defIgnore - this.defReduction) + this.characterLevel + 20);
         this.enemyRES = $("#enemyRES").val() * 0.01;
         this.resMultiplier = 1 - (this.enemyRES - this.resPEN);
         this.vulnerability = $("#vulnerability").val() * 0.01;
@@ -299,16 +308,18 @@ $("#submitBreak").click(() => {
         this.resPEN = $("#resPENBreak").val() * 0.01;
         this.finalToughnessReduction = this.baseToughnessReduction * (1 + this.weaknessBreakEfficiency);
         this.blastFinalToughnessReduction = this.blastToughnessReduction * (1 + this.weaknessBreakEfficiency);
-        this.firstHitToughnessReduction = this.baseToughnessReduction * (1 + this.bounceFirstHit + this.weaknessBreakEfficiency);
+        this.firstHitToughnessReduction = this.baseToughnessReduction * 
+            (1 + this.bounceFirstHit + this.weaknessBreakEfficiency);
         this.levelMultiplier = [
             54.0000, 58.0000, 62.0000, 67.5264, 70.5094, 73.5228, 76.5660, 79.6385, 82.7395, 85.8684,
             91.4944, 97.0680, 102.5892, 108.0579, 113.4743, 118.8383, 124.1499, 129.4091, 134.6159, 139.7703,
             149.3323, 158.8011, 168.1768, 177.4594, 186.6489, 195.7452, 204.7484, 213.6585, 222.4754, 231.1992,
             246.4276, 261.1810, 275.4733, 289.3179, 302.7275, 315.7144, 328.2905, 340.4671, 352.2554, 363.6658,
             408.1240, 451.7883, 494.6798, 536.8188, 578.2249, 618.9172, 658.9138, 698.2325, 736.8905, 774.9041, 
-            871.0599, 964.8705, 1056.4206, 1145.7910, 1233.0585, 1318.2965, 1401.5750, 1482.9608, 1562.5178, 1640.3068,
-            1752.3215, 1861.9011, 1969.1242, 2074.0659, 2176.7983, 2277.3904, 2375.9085, 2472.4160, 2566.9739, 2659.6406,
-            2780.3044, 2898.6022, 3014.6029, 3128.3729, 3239.9758, 3349.4730, 3456.9236, 3562.3843, 3665.9099, 3767.5533
+            871.0599, 964.8705, 1056.4206, 1145.7910, 1233.0585, 1318.2965, 1401.5750, 1482.9608, 1562.5178, 
+            1640.3068, 1752.3215, 1861.9011, 1969.1242, 2074.0659, 2176.7983, 2277.3904, 2375.9085, 2472.4160, 
+            2566.9739, 2659.6406, 2780.3044, 2898.6022, 3014.6029, 3128.3729, 3239.9758, 3349.4730, 3456.9236, 
+            3562.3843, 3665.9099, 3767.5533
         ];
 
         // Enemy Stats
@@ -322,7 +333,8 @@ $("#submitBreak").click(() => {
         this.maxToughness = parseFloat($("#maxToughness").val())
         this.toughnessMultiplier = 0.5 + (this.maxToughness / 40);
         this.defReduction = $("#defReductionBreak").val() * 0.01;
-        this.defMultiplier = (this.characterLevel + 20) / ((this.enemyLevel + 20) * (1 - this.defIgnore - this.defReduction) + this.characterLevel + 20);
+        this.defMultiplier = (this.characterLevel + 20) / ((this.enemyLevel + 20) * 
+            (1 - this.defIgnore - this.defReduction) + this.characterLevel + 20);
         this.enemyRES = $("#enemyRESBreak").val() * 0.01;
         this.resMultiplier = 1 - (this.enemyRES - this.resPEN);
         this.vulnerability = $("#vulnerabilityBreak").val() * 0.01;
