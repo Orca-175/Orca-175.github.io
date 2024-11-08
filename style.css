@@ -213,11 +213,11 @@ button:hover, .typeButton:hover, .abilityButton:hover {
 }
 
 #checkboxContainer, #checkboxContainerBreak {
-    border: 1.6px solid var(--mainBackgroundColor);
+    padding: 0 0.1rem 0 0.1rem;
     display: flex;
     justify-content: center;
     float: right;
-    width: 3.125rem;
+    width: 2.5rem;
     margin-left: auto;
 }
 
