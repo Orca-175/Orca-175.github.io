@@ -58,7 +58,7 @@ function getBreakDamage(stats) {
     // Super Break Damage
     let finalSuperBreakDMG = stats.levelMultiplier[stats.characterLevel - 1] * (stats.finalToughnessReduction / 10) * 
         (1 + stats.breakEffect) * (1 + stats.superBreakMultiplier) * stats.defMultiplier * stats.resMultiplier * 
-        (1 + stats.vulnerability) * stats.brokenMultiplier;
+        (1 + stats.vulnerability);
 
     if (abilityTypeBreak == "blast") {
         finalSuperBreakDMG += (stats.levelMultiplier[stats.characterLevel - 1] * 
